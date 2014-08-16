@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ArmaAndroid</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Arma Android</string>
+    <string name="menu_MapGPS">Map/GPS</string>
+    <string name="menu_DateTime">Watch</string>
+    <string name="menu_Settings">Settings</string>
+    <string name="settings_keepscreenon">Keep Screen On (No Sleeping)</string>
+    <string name="connecting_message">Waiting for Arma game connection&#8230;</string>
+    <string name="datetime_Date">Date:</string>
+    <string name="datetime_Time">Time:</string>
+    <string name="datetime_helpmessage_GPS">Make sure you have a GPS.</string>
+    <string name="datetime_helpmessage_Watch">Make sure you have a Watch.</string>
 
 </resources>

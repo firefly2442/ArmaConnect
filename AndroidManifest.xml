@@ -3,11 +3,11 @@
     package="org.ff.armaandroid"
     android:versionCode="1"
     android:versionName="1.0" >
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <application
@@ -16,13 +16,20 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.ff.armaandroid.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MapTileViewActivity" />
+        <activity android:name=".DateTimeActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".ConnectingActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 

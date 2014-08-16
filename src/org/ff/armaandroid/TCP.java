@@ -29,36 +29,61 @@ public class TCP implements Runnable {
 				try {
 					//http://systembash.com/content/a-simple-java-tcp-server-and-tcp-client/
 					
-					Log.v("TCP", "Connecting to TCP IP: " + UDP.ipaddress);
+					//TODO: look into keeping the TCP connection open instead of having to close it down
+					//and re-open every single time.
+					
+					//Log.v("TCP", "Connecting to TCP IP: " + UDP.ipaddress);
 					Socket socket = new Socket(UDP.ipaddress, 65042);
-					Log.v("TCP", "Finished socket connection.");
+					//Log.v("TCP", "Finished socket connection.");
 					
 					DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 	                DataOutputStream out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 					
-	                //all message passing uses UTF-8 format, TODO: does this need to be checked?
+	                //TODO: look to see if we have any data that needs to be sent to Arma
+	                //map markers, etc.
+	                
+	                //all message passing uses UTF-8 format
 	                out.writeBytes("This is from java.");
+	                out.writeBytes(".Arma2NETAndroidEnd.");
 	                out.flush();
+	                //Log.v("TCP", "Finished writing and flushing.");
 	                
 	                byte[] returned = new byte[16384]; //16 KB (corresponds to callExtension limit in Arma)
-	                in.read(returned);
+	                //Log.v("TCP", "Started read.");
+	                int bytesReceived;
+	                String returnedString = "";
+	                while ((bytesReceived = in.read(returned)) != -1) {
+	                	String converted = new String(returned, "UTF-8").trim();
+	                	returnedString = returnedString + converted;
+	                	//Log.v("TCP", "Finished with one read.");
+	                	if (returnedString.contains(".Arma2NETAndroidEnd."))
+	                		break;
+	                }
+	                returnedString = returnedString.replace(".Arma2NETAndroidEnd.", "");
 	                
-	                String converted = new String(returned).trim();
-	                Log.v("TCP", "From Arma: " + converted);
+	                //parse the data and send it on to the appropriate data structure
+	                if (!returnedString.equals("")) {
+	                	Log.v("TCP", "From Arma: " + returnedString);
+	                	ParseData.parseData(returnedString);
+	                }
 	                
+	                //sleep for a little bit so we don't hammer out messages
 	                try {
-						Thread.sleep(3000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 					
 					socket.close();
 				} catch (SocketException e1) {
-					e1.printStackTrace();
+					//e1.printStackTrace();
+					UDP.ipaddress = null;
 				} catch (UnknownHostException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					UDP.ipaddress = null;
 				} catch (IOException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					UDP.ipaddress = null;
 				}
 			}
 		}

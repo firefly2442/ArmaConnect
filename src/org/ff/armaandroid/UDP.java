@@ -6,8 +6,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-import android.util.*;
-
 
 public class UDP implements Runnable {
 	
@@ -20,7 +18,7 @@ public class UDP implements Runnable {
 	}
 
 	public void run() {
-		Log.v("UDP", "Started listening for UDP packets...");
+		//Log.v("UDP", "Started listening for UDP packets...");
 
 		DatagramSocket socket;
 		try {
@@ -30,19 +28,22 @@ public class UDP implements Runnable {
 			while (true) {
 				DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 				try {
-					Log.v("UDP", "Waiting to receive UDP packet...");
+					//Log.v("UDP", "Waiting to receive UDP packet...");
 					socket.receive(receivePacket);
 
 					InetAddress IPAddress = receivePacket.getAddress();
 					String ipString = IPAddress.toString().replaceAll("/", "");
-					ipaddress = ipString;
 					
 					String received = new String(receivePacket.getData()).trim();
+					if (received.equals("Arma2NETAndroidPlugin")) {
+						ipaddress = ipString;
+					}
 
-					Log.v("UDP", "IPAddress: " + ipString + " - Received: " + received);
+					//Log.v("UDP", "IPAddress: " + ipString + " - Received: " + received);
 
 				} catch (IOException e) {
-					e.printStackTrace();
+					//e.printStackTrace();
+					ipaddress = null;
 				}
 			}
 		} catch (SocketException e1) {
