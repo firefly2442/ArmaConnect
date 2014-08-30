@@ -1,7 +1,7 @@
 Arma Connect
 ===========
 
-An Android(&trade;) app to connect to Arma through the Arma2NETAndroid Plugin.
+An Android(&trade;) app to connect to Arma through the Arma2NETConnect Plugin.
 
 
 ### About

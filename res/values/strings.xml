@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Arma Android</string>
+    <string name="app_name">Arma Connect</string>
     <string name="menu_MapGPS">Map/GPS</string>
     <string name="menu_DateTime">Watch</string>
     <string name="menu_Settings">Settings</string>

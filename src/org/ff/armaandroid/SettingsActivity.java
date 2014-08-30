@@ -27,7 +27,7 @@ import android.widget.Toast;
 public class SettingsActivity extends Activity {
 	
 	//https://developer.android.com/guide/topics/data/data-storage.html
-	private final static String PREFS_NAME = "ArmaAndroidPreferences";
+	private final static String PREFS_NAME = "ArmaConnectPreferences";
 	private static SharedPreferences settings;
 
 	public void onCreate( Bundle savedInstanceState ) {

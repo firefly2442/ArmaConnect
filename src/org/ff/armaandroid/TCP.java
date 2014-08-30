@@ -69,7 +69,7 @@ public class TCP implements Runnable {
 	                	String converted = new String(returned, "UTF-8").trim();
 	                	returnedString = returnedString + converted;
 	                	//Log.v("TCP", "Finished with one read.");
-	                	if (returnedString.contains(".Arma2NETAndroidEnd."))
+	                	if (returnedString.contains(".Arma2NETConnectEnd."))
 	                		break;
 	                }
 	                returnedString = returnedString.replace(".Arma2NETConnectEnd.", "");
