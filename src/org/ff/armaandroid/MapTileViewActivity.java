@@ -117,7 +117,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 			
 			//TODO: check if the map changed or we got disconnected (more than 8 seconds without data)
 			//if so, go back to "connecting" activity
-			if (MainActivity.udp.ipaddress == null || (System.currentTimeMillis()/1000 - maps.getLastUpdateEpoch()) >= 8) {
+			if (UDP.ipaddress == null || (System.currentTimeMillis()/1000 - maps.getLastUpdateEpoch()) >= 8) {
 				maps.resetMap();
 				Intent intent = new Intent( MapTileViewActivity.this, ConnectingActivity.class );
 				intent.putExtra("launching", "show_map");
