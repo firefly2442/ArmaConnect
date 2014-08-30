@@ -11,10 +11,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-package org.ff.armaandroid;
+package org.ff.armaconnect;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import org.ff.armaconnect.R;
 
 import android.app.Activity;
 import android.content.Intent;
