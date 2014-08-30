@@ -48,7 +48,7 @@ public class UDP implements Runnable {
 					String ipString = IPAddress.toString().replaceAll("/", "");
 					
 					String received = new String(receivePacket.getData()).trim();
-					if (received.equals("Arma2NETAndroidPlugin")) {
+					if (received.equals("Arma2NETConnectPlugin")) {
 						ipaddress = ipString;
 					}
 

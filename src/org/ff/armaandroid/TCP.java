@@ -57,7 +57,7 @@ public class TCP implements Runnable {
 	                
 	                //all message passing uses UTF-8 format
 	                out.writeBytes("This is from java.");
-	                out.writeBytes(".Arma2NETAndroidEnd.");
+	                out.writeBytes(".Arma2NETConnectEnd.");
 	                out.flush();
 	                //Log.v("TCP", "Finished writing and flushing.");
 	                
@@ -72,7 +72,7 @@ public class TCP implements Runnable {
 	                	if (returnedString.contains(".Arma2NETAndroidEnd."))
 	                		break;
 	                }
-	                returnedString = returnedString.replace(".Arma2NETAndroidEnd.", "");
+	                returnedString = returnedString.replace(".Arma2NETConnectEnd.", "");
 	                
 	                //parse the data and send it on to the appropriate data structure
 	                if (!returnedString.equals("")) {
