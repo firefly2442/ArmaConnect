@@ -58,3 +58,5 @@ The Android application uses two third-party libraries.  [TileView](https://gith
 ### Thanks To
 
 * [AlphaSquad](http://alphasquad.net) for help and testing.
+* Robalo for help with the Arma mod and scripting.
+* Hatchet for help with images.
