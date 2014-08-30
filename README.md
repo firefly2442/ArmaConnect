@@ -53,6 +53,8 @@ Arma 3 is a product of [Bohemia Interactive](http://www.bistudio.com).  Map imag
 
 Please do not release this application under any other name or on the Google Play store.  This application will always remain free under the GPLv3 license.
 
+The Android application uses two third-party libraries.  [TileView](https://github.com/moagrius/TileView) is released under the MIT license.  It in turn uses [DiskLruCache](https://github.com/JakeWharton/DiskLruCache) which is released under the Apache version 2 license.
+
 ### Thanks To
 
 * [AlphaSquad](http://alphasquad.net) for help and testing.
