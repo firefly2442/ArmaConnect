@@ -1,7 +1,7 @@
 Arma Connect
 ===========
 
-An Android(&trade;) app to connect to Arma through the Arma2NETConnect Plugin.
+An [Android](http://www.android.com/)(&trade;) app to connect to Arma through the Arma2NETConnect Plugin.
 
 
 ### About
@@ -43,9 +43,10 @@ that connects to your Android phone or tablet through a local wireless connectio
 
 ### Troubleshooting
 
-* Make sure your firewall isn't blocking the connection.
+* Make sure your firewall isn't blocking the connection.  Allow UDP port 65041 and TCP port 65042. Most programs should prompt you at the beginning when it tries to make a connection. All network connections should be on the same subnet and will not leave your local network.
 * Check the Arma2NET logs.  These can be found in `Users/username/AppData/Local/Arma2NET/`.
 * Check the ArmaConnect logs.  These can be found in `Users/userame/AppData/Local/Arma2NETConnect/logs/`.
+* If you found a bug, please create a ticket on the appropriate Github project page.
 
 ### License
 
