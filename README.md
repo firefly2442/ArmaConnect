@@ -53,9 +53,9 @@ that connects to your Android phone or tablet through a local wireless connectio
 
 Arma 3 is a product of [Bohemia Interactive](http://www.bistudio.com).  Map images, markers, and other image assets are copyrighted and are used under the [Arma Public License](http://www.bistudio.com/community/licenses/arma-public-license).  No assets from Arma will be stored on Github.
 
-Please do not release this application under any other name or on the Google Play store.  This application will always remain free under the GPLv3 license.
+Please do not release this application under any other name or on the Google Play(&trade;) store.  This application will always remain free under the GPLv3 license.
 
-Android is a trademark of Google Inc.
+Android is a trademark of Google Inc.  Google Play is a trademark of Google Inc.
 
 The Android application uses two third-party libraries.  [TileView](https://github.com/moagrius/TileView) is released under the MIT license.  It in turn uses [DiskLruCache](https://github.com/JakeWharton/DiskLruCache) which is released under the Apache version 2 license.
 
