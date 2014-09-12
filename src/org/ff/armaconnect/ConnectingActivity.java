@@ -58,6 +58,10 @@ public class ConnectingActivity extends Activity implements Runnable {
 			((TextView) findViewById(R.id.textHelpMessage)).setText(getString(R.string.datetime_helpmessage_GPS));
 		} else if (launching.equals("show_datetime")) {
 			((TextView) findViewById(R.id.textHelpMessage)).setText(getString(R.string.datetime_helpmessage_Watch));
+		} else if (launching.equals("show_weather")) {
+			Intent intent = new Intent( ConnectingActivity.this, WeatherActivity.class );
+	    	startActivity( intent );
+	    	finish(); //this will "destroy" this activity
 		}
 		
 		//start thread
