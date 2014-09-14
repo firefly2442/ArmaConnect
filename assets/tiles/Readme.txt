@@ -1,0 +1,1 @@
+Map tiles go here (see script for generation).
