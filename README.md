@@ -14,11 +14,11 @@ that connects to your Android phone or tablet through a local wireless connectio
 ##### Current
 * Live map with player location through GPS
 * Date and time display from the game
+* Weather (clouds, rain, fog, etc.) (forecast needs more commands from BIS)
 
 ##### Planned/Possible Future Features
 * Altitude
 * Chat log
-* Weather (clouds, rain, fog, etc.)
 * Gear/inventory
 
 ### Requirements
