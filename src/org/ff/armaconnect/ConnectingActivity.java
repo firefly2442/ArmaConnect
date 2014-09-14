@@ -34,6 +34,8 @@ public class ConnectingActivity extends Activity implements Runnable {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_connecting);
 		
+		Log.v("ConnectingActivity", "ConnectingActivity onCreate.");
+		
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
@@ -84,6 +86,8 @@ public class ConnectingActivity extends Activity implements Runnable {
 			waitForMapInformation();
 		} else if (launching.equals("show_datetime")) {
 			waitForDateTime();
+		} else if (launching.equals("show_weather")) {
+			waitForWeather();
 		}
 	}
 	
@@ -113,6 +117,24 @@ public class ConnectingActivity extends Activity implements Runnable {
 			if (MapTileViewActivity.maps.getCurrentMap() != null) {
 				//the map has changed or we need to load in for the first time
 				Intent intent = new Intent( ConnectingActivity.this, MapTileViewActivity.class );
+		    	startActivity( intent );
+		    	finish(); //this will "destroy" this activity
+			}
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void waitForWeather() {
+		//Log.v("ConnectingActivity", "Waiting for weather information.");
+		while (mutex) {
+			//check to make sure we've gotten some data first
+			if (WeatherActivity.isWeatherSet()) {
+				Intent intent = new Intent( ConnectingActivity.this, WeatherActivity.class );
 		    	startActivity( intent );
 		    	finish(); //this will "destroy" this activity
 			}

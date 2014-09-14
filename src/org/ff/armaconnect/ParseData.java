@@ -41,7 +41,14 @@ public class ParseData {
 				gc.set(Integer.parseInt(split[i+1]), Integer.parseInt(split[i+2])-1, Integer.parseInt(split[i+3]), Integer.parseInt(split[i+4]), Integer.parseInt(split[i+5]), Integer.parseInt(split[i+6]));
 				DateTimeActivity.updateDateTime(gc);
 				i = i + 8;
-			} else {
+			}
+			else if (split[i].equals("weather")) {
+				Weather w = new Weather(Float.parseFloat(split[i+1]), Float.parseFloat(split[i+3]), Float.parseFloat(split[i+5]), Float.parseFloat(split[i+7]), Float.parseFloat(split[i+9]), Float.parseFloat(split[i+11]), Float.parseFloat(split[i+13]), Float.parseFloat(split[i+15]), Float.parseFloat(split[i+17]), Float.parseFloat(split[i+19]));
+				Weather f = new Weather(Float.parseFloat(split[i+2]), Float.parseFloat(split[i+4]), Float.parseFloat(split[i+6]), Float.parseFloat(split[i+8]), Float.parseFloat(split[i+10]), Float.parseFloat(split[i+12]), Float.parseFloat(split[i+14]), Float.parseFloat(split[i+16]), Float.parseFloat(split[i+18]), Float.parseFloat(split[i+20]));
+				WeatherActivity.updateWeather(w, f);
+				i = i + 21;
+			}
+			else {
 				i++;
 			}
 		}

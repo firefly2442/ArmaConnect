@@ -50,6 +50,7 @@ public class MainActivity extends Activity {
 		HashMap<Integer, Class<?>> implementations = new HashMap<Integer, Class<?>>();
 		implementations.put( R.id.show_map, MapTileViewActivity.class );
 		implementations.put( R.id.show_datetime, DateTimeActivity.class );
+		implementations.put( R.id.show_weather, WeatherActivity.class );
 		
 		for (Entry<Integer, Class<?>> entry : implementations.entrySet()) {
 			TextView label = (TextView) findViewById( entry.getKey() );
