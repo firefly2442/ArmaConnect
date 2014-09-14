@@ -12,5 +12,17 @@
     <string name="datetime_Time">Time:</string>
     <string name="datetime_helpmessage_GPS">Make sure you have a GPS.</string>
     <string name="datetime_helpmessage_Watch">Make sure you have a Watch.</string>
+    <string name="weather_Current">Current Weather</string>
+    <string name="weather_Forecast">Forecast</string>
+    <string name="weather_Sky">Sky</string>
+    <string name="weather_Wind">Wind</string>
+    <string name="weather_Sunny">Sunny</string>
+    <string name="weather_PatchyClouds">Patchy Clouds</string>
+    <string name="weather_Cloudy">Cloudy</string>
+    <string name="weather_Raining">Raining</string>
+    <string name="weather_Storms">Storms</string>
+    <string name="weather_Humidity">Humidity</string>
+    <string name="weather_Fog">Fog</string>
+    <string name="weather_Waves">Waves</string>
 
 </resources>
