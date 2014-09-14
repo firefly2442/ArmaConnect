@@ -59,6 +59,8 @@ Android is a trademark of Google Inc.  Google Play is a trademark of Google Inc.
 
 The Android application uses two third-party libraries.  [TileView](https://github.com/moagrius/TileView) is released under the MIT license.  It in turn uses [DiskLruCache](https://github.com/JakeWharton/DiskLruCache) which is released under the Apache version 2 license.
 
+Some images are part of the [Tango Icon Library](http://tango.freedesktop.org/Tango_Icon_Library) which is released under Public Domain.
+
 ### Thanks To
 
 * [AlphaSquad](http://alphasquad.net) for help and testing.
