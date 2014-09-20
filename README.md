@@ -34,6 +34,7 @@ that connects to your Android phone or tablet through a local wireless connectio
 
 ### Installation
 
+* Uninstall any previously installed version of the application if applicable.
 * Enable installation of third-party apps on your Android device.  This can be found in Settings -> Security.  Then check allow from "Unknown Sources".  [See details here](https://developer.android.com/distribute/tools/open-distribution.html).  This needs to be done because the app is not in Google Play.
 * Install this application to your Android device (.apk binary).
 * Setup @Arma2NET mod and the Arma2NETConnect plugin.
@@ -47,7 +48,7 @@ that connects to your Android phone or tablet through a local wireless connectio
 
 * Make sure your firewall isn't blocking the connection.  Allow UDP port 65041 and TCP port 65042. Most programs should prompt you at the beginning when it tries to make a connection. All network connections should be on the same subnet and will not leave your local network.
 * Check the Arma2NET logs.  These can be found in `Users/username/AppData/Local/Arma2NET/`.
-* Check the ArmaConnect logs.  These can be found in one of two places.  First, check your root Arma 3 directory: `Arma 3/logs/`, if there's nothing there, check: `Users/userame/AppData/Local/Arma2NETConnect/logs/`.
+* Check the ArmaConnect logs.  These can be found in `Users/userame/AppData/Local/Arma2NETConnect/logs/`.
 * If you found a bug, please create a ticket on the appropriate Github project page.
 
 ### License
