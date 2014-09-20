@@ -27,13 +27,14 @@ that connects to your Android phone or tablet through a local wireless connectio
 * Wireless network setup and your phone/tablet connected.
 * [@Arma2NET](https://github.com/ScottNZ/Arma2NET) mod compiled and installed.
 * [Arma2NETConnect plugin](https://github.com/firefly2442/Arma2NETConnectPlugin) for @Arma2NET installed.
-  * [Visual Studio 2013 Redistributable](http://www.microsoft.com/en-us/download/details.aspx?id=40784)?
+  * [Visual Studio 2013 Redistributable x86 (32bit version)](http://www.microsoft.com/en-us/download/details.aspx?id=40784)?
+  * [Microsoft .NET Framework 4.5](http://www.microsoft.com/en-us/download/details.aspx?id=30653)
 * [@Arma2NETConnect](https://github.com/firefly2442/ArmaConnect-mod) mod installed for Arma.
 * [ArmaConnect](https://github.com/firefly2442/ArmaConnect) this application installed on your Android device.
 
 ### Installation
 
-* Enabled third-party apps on your Android device.  This can be found in the settings.
+* Enable installation of third-party apps on your Android device.  This can be found in Settings -> Security.  Then check allow from "Unknown Sources".  [See details here](https://developer.android.com/distribute/tools/open-distribution.html).  This needs to be done because the app is not in Google Play.
 * Install this application to your Android device (.apk binary).
 * Setup @Arma2NET mod and the Arma2NETConnect plugin.
 * Setup the @Arma2NETConnect mod.
