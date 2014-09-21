@@ -7,7 +7,8 @@ An [Android](http://www.android.com/)(&trade;) app to connect to Arma through th
 ### About
 
 This is an Android(&trade;) application that connects through an Arma2NET plugin to Arma.  Development started at [AlphaSquad](http://alphasquad.net/forum/viewtopic.php?f=71&t=3622).  It is a **client-side** mod and plugin
-that connects to your Android phone or tablet through a local wireless connection.
+that connects to your Android phone or tablet through a local wireless connection.  For more details,
+see the [BIS forum thread](http://forums.bistudio.com/showthread.php?183223).
 
 ### Features
 
