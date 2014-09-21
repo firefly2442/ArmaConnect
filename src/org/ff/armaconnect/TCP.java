@@ -84,7 +84,7 @@ public class TCP implements Runnable {
 	                
 	                //sleep for a little bit so we don't hammer out messages
 	                try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
