@@ -15,13 +15,18 @@ package org.ff.armaconnect;
 
 import org.ff.armaconnect.R;
 
+import com.qozix.tileview.TileView.TileViewEventListenerImplementation;
+import com.qozix.tileview.markers.MarkerEventListener;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class MapTileViewActivity extends TileViewActivity implements Runnable {
@@ -31,6 +36,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 	private ImageView player;
 	private boolean mutex;
 	private Thread mapThread;
+	private boolean followPlayer = false;
 
 	@SuppressLint("DefaultLocale")
 	@Override
@@ -63,6 +69,12 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		// frame to the player
 		frameTo( current_map.player_x, (current_map.y-current_map.player_y) );
 
+		//add event listener if user taps on player marker
+		getTileView().addMarkerEventListener(playerMarkerEventListener);
+
+		//add event listener to see if the user is dragging
+		getTileView().addTileViewEventListener(dragListener);
+
 		// sets scale (zoom level)
 		getTileView().setScale( 0.5 );
 		
@@ -85,7 +97,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		getTileView().post( new Runnable() {
 			@Override
 			public void run() {
-				Log.v("MapTileViewActivity", "Player info: " + current_map.player_x + ", " + current_map.player_y + ", " + current_map.player_rotation + ", " + current_map.vehicle);
+				//Log.v("MapTileViewActivity", "Player info: " + current_map.player_x + ", " + current_map.player_y + ", " + current_map.player_rotation + ", " + current_map.vehicle);
 				//update existing information
 				
 				//the two systems have a different origin 0,0 position, thus the subtraction
@@ -99,10 +111,30 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 				}
 
 				player.setRotation(current_map.player_rotation);
+
+				if (followPlayer) {
+					getTileView().scrollToAndCenter(new Point(Math.round(player.getX()), Math.round(player.getY())));
+				}
 			}
 		});
 	}
 	
+	private MarkerEventListener playerMarkerEventListener = new MarkerEventListener() {
+		@Override
+		public void onMarkerTap(View v, int x, int y) {
+			followPlayer = true;
+			getTileView().scrollToAndCenter(new Point(x, y));
+			Toast.makeText(getApplicationContext(), "Following player", Toast.LENGTH_SHORT).show();
+		}
+	};
+
+	private TileViewEventListenerImplementation dragListener = new TileViewEventListenerImplementation() {
+		@Override
+		public void onDrag(int x, int y) {
+			followPlayer = false;
+		}
+	};
+
 	public void onDestroy() {
 		Log.v("MapTileViewActivity", "MapTileView Destroy.");
 		mutex = false;
