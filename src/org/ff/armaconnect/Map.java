@@ -24,6 +24,7 @@ public class Map {
 	public float player_y;
 	//player orientation/rotation
 	public float player_rotation;
+	public boolean vehicle;
 	
 	public Map(String name, int x, int y)
 	{

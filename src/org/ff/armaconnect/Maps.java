@@ -45,13 +45,14 @@ public class Maps {
 		return last_update;
 	}
 	
-	public boolean setPlayerPosition(String mapname, float x, float y, float rot)
+	public boolean setPlayerPosition(String mapname, float x, float y, float rot, boolean v)
 	{
 		for (int i = 0; i < available_maps.size(); i++) {
 			if (available_maps.get(i).name.equals(mapname)) {
 				available_maps.get(i).player_x = x;
 				available_maps.get(i).player_y = y;
 				available_maps.get(i).player_rotation = rot;
+				available_maps.get(i).vehicle = v;
 				current_map = i;
 				last_update = System.currentTimeMillis()/1000; //epoch time
 				return true;

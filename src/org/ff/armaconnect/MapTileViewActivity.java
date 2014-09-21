@@ -28,7 +28,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 	
 	public static Maps maps = new Maps();
 	// player marker
-	private View player;
+	private ImageView player;
 	private boolean mutex;
 	private Thread mapThread;
 
@@ -71,7 +71,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		mutex = true;
 	}
 	
-	private View placeMarker( int resId, double x, double y ) {
+	private ImageView placeMarker( int resId, double x, double y ) {
 		ImageView imageView = new ImageView( this );
 		imageView.setImageResource( resId );
 		getTileView().addMarker( imageView, x, y );
@@ -85,12 +85,19 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		getTileView().post( new Runnable() {
 			@Override
 			public void run() {
-				//Log.v("MapTileViewActivity", "Player info: " + current_map.player_x + ", " + current_map.player_y + ", " + current_map.player_rotation);
+				Log.v("MapTileViewActivity", "Player info: " + current_map.player_x + ", " + current_map.player_y + ", " + current_map.player_rotation + ", " + current_map.vehicle);
 				//update existing information
 				
 				//the two systems have a different origin 0,0 position, thus the subtraction
 				getTileView().moveMarker(player, current_map.player_x, (current_map.y-current_map.player_y));
 				
+				//set whether we use the normal icon or vehicle icon
+				if (!current_map.vehicle) {
+					player.setImageResource(R.drawable.player_icon);
+				} else {
+					player.setImageResource(R.drawable.player_vehicle_icon);
+				}
+
 				player.setRotation(current_map.player_rotation);
 			}
 		});

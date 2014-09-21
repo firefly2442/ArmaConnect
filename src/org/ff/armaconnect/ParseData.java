@@ -30,9 +30,9 @@ public class ParseData {
 		int i = 0;
 		while (i < split.length) {
 			if (split[i].equals("player")) {
-				if (!MapTileViewActivity.maps.setPlayerPosition(split[i+1], Float.parseFloat(split[i+2]), Float.parseFloat(split[i+3]), Float.parseFloat(split[i+4])))
+				if (!MapTileViewActivity.maps.setPlayerPosition(split[i+1], Float.parseFloat(split[i+2]), Float.parseFloat(split[i+3]), Float.parseFloat(split[i+4]), Boolean.parseBoolean(split[i+5])))
 					Log.v("ParseData", "Unable to set the player position.");
-				i = i + 5;
+				i = i + 6;
 			}
 			else if (split[i].equals("datetime")) {
 				//returned milliseconds is not used
