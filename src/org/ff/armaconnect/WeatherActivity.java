@@ -87,10 +87,10 @@ public class WeatherActivity extends FragmentActivity implements Runnable {
 				TextView textFog = (TextView) findViewById(R.id.textFog);
 				TextView textWaves = (TextView) findViewById(R.id.textWaves);
 				
-				if (weather.overcast > 0.3 && weather.lightning > 0) {
+				if (weather.overcast > 0.3 && weather.lightning > 0.3) {
 					imageWeather.setImageResource(R.drawable.weather_storm);
 					textWeather.setText(getResources().getString(R.string.weather_Storms));
-				} else if (weather.overcast > 0.3 && weather.rain > 0) {
+				} else if (weather.overcast > 0.3 && weather.rain > 0.3) {
 					imageWeather.setImageResource(R.drawable.weather_showers);
 					textWeather.setText(getResources().getString(R.string.weather_Raining));
 				} else if (weather.overcast > 0.5) {
@@ -104,6 +104,7 @@ public class WeatherActivity extends FragmentActivity implements Runnable {
 					textWeather.setText(getResources().getString(R.string.weather_Sunny));
 				}
 				
+				//TODO: check if this means the wind is "coming" or "going", do we need to add/subtract 180 or not...?
 				imageWind.setRotation(weather.wind_direction_degrees);
 				DecimalFormat df = new DecimalFormat("#.#");
 				String wind = df.format(weather.wind_speed) + " m/s";
