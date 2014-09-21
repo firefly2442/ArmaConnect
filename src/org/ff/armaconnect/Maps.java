@@ -26,6 +26,7 @@ public class Maps {
 		//constructor
 		//map name and x,y dimension
 		available_maps.add(new Map("Stratis", 8192, 8192));
+		available_maps.add(new Map("Altis", 500, 500)); //not currently implemented, just place-holder
 		current_map = 0;
 	}
 	
@@ -49,8 +50,11 @@ public class Maps {
 	{
 		for (int i = 0; i < available_maps.size(); i++) {
 			if (available_maps.get(i).name.equals(mapname)) {
-				available_maps.get(i).player_x = x;
-				available_maps.get(i).player_y = y;
+				//check to make sure player position doesn't go outside map boundaries
+				if (x <= available_maps.get(i).x)
+					available_maps.get(i).player_x = x;
+				if (y <= available_maps.get(i).y)
+					available_maps.get(i).player_y = y;
 				available_maps.get(i).player_rotation = rot;
 				available_maps.get(i).vehicle = v;
 				current_map = i;
