@@ -72,6 +72,8 @@ public class TCP implements Runnable {
 	                	if (returnedString.contains(".Arma2NETConnectEnd."))
 	                		break;
 	                }
+	                if (!returnedString.contains(".Arma2NETConnectEnd."))
+	                	Log.v("TCP", "Unable to find end of message, this will probably result in a parsing error later.");
 	                returnedString = returnedString.replace(".Arma2NETConnectEnd.", "");
 	                
 	                //parse the data and send it on to the appropriate data structure

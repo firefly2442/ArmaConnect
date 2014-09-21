@@ -93,6 +93,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 	private void updatePlayerMarker(Map cur_map) {
 		
 		final Map current_map = cur_map;
+		final ImageView player = this.player;
 
 		getTileView().post( new Runnable() {
 			@Override
