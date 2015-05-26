@@ -78,9 +78,11 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		// sets scale (zoom level)
 		getTileView().setScale( 0.5 );
 		
-		mapThread = new Thread(this);
-		mapThread.start();
-		mutex = true;
+		if (mapThread == null) {
+			mapThread = new Thread(this);
+			mapThread.start();
+			mutex = true;
+		}
 	}
 	
 	private ImageView placeMarker( int resId, double x, double y ) {
@@ -101,8 +103,11 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 				//Log.v("MapTileViewActivity", "Player info: " + current_map.player_x + ", " + current_map.player_y + ", " + current_map.player_rotation + ", " + current_map.vehicle);
 				//update existing information
 				
-				//the two systems have a different origin 0,0 position, thus the subtraction
-				getTileView().moveMarker(player, current_map.player_x, (current_map.y-current_map.player_y));
+				//make sure it's been initialized and we actually have data
+				if (current_map.player_x != 0.0f && current_map.player_y != 0.0f) {
+					//the two systems have a different origin 0,0 position, thus the subtraction
+					getTileView().moveMarker(player, current_map.player_x, (current_map.y-current_map.player_y));
+				}
 				
 				//set whether we use the normal icon or vehicle icon
 				if (!current_map.vehicle) {
@@ -160,6 +165,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 			//TODO: check if the map changed or we got disconnected (more than 8 seconds without data)
 			//if so, go back to "connecting" activity
 			if (UDP.ipaddress == null || (System.currentTimeMillis()/1000 - maps.getLastUpdateEpoch()) >= 8) {
+				Log.v("MapTileViewActivity", "Disconnected, running reset.");
 				maps.resetMap();
 				Intent intent = new Intent( MapTileViewActivity.this, ConnectingActivity.class );
 				intent.putExtra("launching", "show_map");

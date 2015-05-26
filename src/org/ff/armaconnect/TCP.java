@@ -41,55 +41,55 @@ public class TCP implements Runnable {
 			{
 				try {
 					//http://systembash.com/content/a-simple-java-tcp-server-and-tcp-client/
-					
-					//TODO: look into keeping the TCP connection open instead of having to close it down
-					//and re-open every single time.
-					
-					//Log.v("TCP", "Connecting to TCP IP: " + UDP.ipaddress);
+
+					Log.v("TCP", "Connecting to TCP IP: " + UDP.ipaddress);
 					Socket socket = new Socket(UDP.ipaddress, 65042);
-					//Log.v("TCP", "Finished socket connection.");
+					Log.v("TCP", "Finished socket connection.");
 					
 					DataInputStream in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 	                DataOutputStream out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 					
-	                //TODO: look to see if we have any data that needs to be sent to Arma
-	                //map markers, etc.
-	                
-	                //all message passing uses UTF-8 format
-	                out.writeBytes("This is from java.");
-	                out.writeBytes(".Arma2NETConnectEnd.");
-	                out.flush();
-	                //Log.v("TCP", "Finished writing and flushing.");
-	                
-	                byte[] returned = new byte[16384]; //16 KB (corresponds to callExtension limit in Arma)
-	                //Log.v("TCP", "Started read.");
-	                int bytesReceived;
-	                String returnedString = "";
-	                while ((bytesReceived = in.read(returned)) != -1) {
-	                	String converted = new String(returned, "UTF-8").trim();
-	                	returnedString = returnedString + converted;
-	                	//Log.v("TCP", "Finished with one read.");
-	                	if (returnedString.contains(".Arma2NETConnectEnd."))
-	                		break;
+	                //TODO: check to make sure this is working
+	                //keep TCP socket connection open for as long as possible
+	                while (true) {
+		                //TODO: look to see if we have any data that needs to be sent to Arma
+		                //map markers, etc.
+
+		                //all message passing uses UTF-8 format
+		                out.writeBytes("This is from java.");
+		                out.writeBytes(".Arma2NETConnectEnd.");
+		                out.flush();
+		                Log.v("TCP", "Finished writing and flushing.");
+
+		                byte[] returned = new byte[16384]; //16 KB (corresponds to callExtension limit in Arma)
+		                Log.v("TCP", "Started read.");
+		                int bytesReceived;
+		                String returnedString = "";
+		                while ((bytesReceived = in.read(returned)) != -1) {
+		                	String converted = new String(returned, "UTF-8").trim();
+		                	returnedString = returnedString + converted;
+		                	Log.v("TCP", "Finished with one read.");
+		                	if (returnedString.contains(".Arma2NETConnectEnd."))
+		                		break;
+		                }
+		                if (!returnedString.contains(".Arma2NETConnectEnd."))
+		                	Log.v("TCP", "Unable to find end of message, this will probably result in a parsing error later.");
+		                returnedString = returnedString.replace(".Arma2NETConnectEnd.", "");
+
+		                //parse the data and send it on to the appropriate data structure
+		                if (!returnedString.equals("")) {
+		                	Log.v("TCP", "From Arma: " + returnedString);
+		                	ParseData.parseData(returnedString);
+		                }
+
+		                //sleep for a little bit so we don't hammer out messages
+		                try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 	                }
-	                if (!returnedString.contains(".Arma2NETConnectEnd."))
-	                	Log.v("TCP", "Unable to find end of message, this will probably result in a parsing error later.");
-	                returnedString = returnedString.replace(".Arma2NETConnectEnd.", "");
-	                
-	                //parse the data and send it on to the appropriate data structure
-	                if (!returnedString.equals("")) {
-	                	Log.v("TCP", "From Arma: " + returnedString);
-	                	ParseData.parseData(returnedString);
-	                }
-	                
-	                //sleep for a little bit so we don't hammer out messages
-	                try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
-					socket.close();
+
 				} catch (SocketException e1) {
 					//e1.printStackTrace();
 					UDP.ipaddress = null;
