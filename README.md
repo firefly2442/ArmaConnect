@@ -65,6 +65,18 @@ The Android application uses two third-party libraries.  [TileView](https://gith
 
 Some images are part of the [Tango Icon Library](http://tango.freedesktop.org/Tango_Icon_Library) which is released under Public Domain.
 
+### For Developers
+
+The overview of events for networking between the Arma plugin and Android device is the following:
+
+* Plugin sends out UDP message on port 65041. This is similar to a heartbeat message since we don't know what IP address the Android device is running on.
+* Plugin sets up a TCP thread on port 65042 to listen for incoming Android connections and data.
+* Android device receives UDP message on port 65041 and remembers the IP address of the Arma computer.
+* Android device sends TCP connection request on port 65042.
+* At this point, the handshake is complete and all data transfer is done between the two using TCP.
+* If there is a network failure or one system dies, the connection can be re-established via the UDP heartbeat and the above steps.
+
+
 ### Thanks To
 
 * [AlphaSquad](http://alphasquad.net) for help and testing.
