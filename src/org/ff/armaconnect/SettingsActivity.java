@@ -32,11 +32,11 @@ public class SettingsActivity extends Activity {
 	private final static String PREFS_NAME = "ArmaConnectPreferences";
 	private static SharedPreferences settings;
 
+	private static boolean keepScreenOn;
+
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
-		
-		
 		
 		if (keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -44,7 +44,7 @@ public class SettingsActivity extends Activity {
 		//setup UI
 		CheckBox checkBox = (CheckBox)findViewById(R.id.screenOnCheckBox);
         checkBox.setChecked(keepScreenOn());
-        
+
         checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -52,12 +52,23 @@ public class SettingsActivity extends Activity {
 				editor.putBoolean("keepScreenOn", isChecked);
 				editor.commit();
 				showSaveMessage();
+				updateSettings();
 			}
       	});
 	}
-	
+
 	public static void initializeSettings(Context context) {
-		settings = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+		if (settings == null)
+			settings = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+		updateSettings();
+	}
+
+	private static void updateSettings() {
+		if (settings.getBoolean("keepScreenOn", true))
+			keepScreenOn = true;
+		else
+			keepScreenOn = false;
 	}
 	
 	private void showSaveMessage() {
@@ -68,7 +79,6 @@ public class SettingsActivity extends Activity {
 	}
 	
 	public static boolean keepScreenOn() {
-		//SharedPreferences preferences = this.getActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-		return settings.getBoolean("keepScreenOn", true);
+		return keepScreenOn;
 	}
 }

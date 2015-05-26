@@ -36,13 +36,13 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		SettingsActivity.initializeSettings(getApplicationContext());
+
 		//start networking
 		if (udp == null)
 			udp = new UDP();
 		if (tcp == null)
 			tcp = new TCP();
-		
-		SettingsActivity.initializeSettings(getApplicationContext());
 		
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
