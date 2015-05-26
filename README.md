@@ -21,6 +21,7 @@ see the [BIS forum thread](http://forums.bistudio.com/showthread.php?183223).
 * Altitude
 * Chat log
 * Gear/inventory
+* Task listing
 
 ### Requirements
 
