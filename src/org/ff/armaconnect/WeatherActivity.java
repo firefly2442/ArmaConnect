@@ -54,9 +54,11 @@ public class WeatherActivity extends FragmentActivity implements Runnable {
         tabHost.addTab(tabHost.newTabSpec(getResources().getString(R.string.weather_Current)).setIndicator(getResources().getString(R.string.weather_Current), null), WeatherFragmentTab.class, null);
         tabHost.addTab(tabHost.newTabSpec(getResources().getString(R.string.weather_Forecast)).setIndicator(getResources().getString(R.string.weather_Forecast), null), WeatherFragmentTab.class, null);
         
-        weatherThread = new Thread(this);
-		weatherThread.start();
-		mutex = true;
+        if (weatherThread == null) {
+	        weatherThread = new Thread(this);
+			weatherThread.start();
+			mutex = true;
+        }
     }
     
     public void onDestroy() {

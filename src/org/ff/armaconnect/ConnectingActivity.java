@@ -62,10 +62,12 @@ public class ConnectingActivity extends Activity implements Runnable {
 			((TextView) findViewById(R.id.textHelpMessage)).setText(getString(R.string.datetime_helpmessage_Watch));
 		}
 		
-		//start thread
-		connectionThread = new Thread(this);
-		connectionThread.start();
-		mutex = true;
+		if (connectionThread == null) {
+			//start thread
+			connectionThread = new Thread(this);
+			connectionThread.start();
+			mutex = true;
+		}
 	}
 	
 	public void onDestroy() {

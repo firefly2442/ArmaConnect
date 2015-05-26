@@ -39,9 +39,11 @@ public class DateTimeActivity extends Activity implements Runnable {
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		datetimeThread = new Thread(this);
-		datetimeThread.start();
-		mutex = true;		
+		if (datetimeThread == null) {
+			datetimeThread = new Thread(this);
+			datetimeThread.start();
+			mutex = true;
+		}
 	}
 	
 	public void onDestroy() {
