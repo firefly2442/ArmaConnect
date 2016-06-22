@@ -15,8 +15,9 @@ package org.ff.armaconnect;
 
 import org.ff.armaconnect.R;
 
-import com.qozix.tileview.TileView.TileViewEventListenerImplementation;
-import com.qozix.tileview.markers.MarkerEventListener;
+import com.qozix.tileview.TileView;
+import com.qozix.tileview.markers.MarkerLayout;
+import com.qozix.tileview.widgets.ZoomPanLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -30,7 +31,7 @@ import android.widget.Toast;
 
 
 public class MapTileViewActivity extends TileViewActivity implements Runnable {
-	
+
 	public static Maps maps = new Maps();
 	// player marker
 	private ImageView player;
@@ -40,75 +41,108 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 
 	@SuppressLint("DefaultLocale")
 	@Override
-	public void onCreate( Bundle savedInstanceState ) {
-		
-		super.onCreate( savedInstanceState );
-		
+	public void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		
+
 		Map current_map = maps.getCurrentMap();
-		
+
 		// size of original image at 100% scale
-		getTileView().setSize( current_map.x, current_map.y );
+		getTileView().setSize(current_map.x, current_map.y);
 
 		// detail levels
-		getTileView().addDetailLevel( 1.000f, "tiles/"+current_map.name.toLowerCase()+"/1000/%col%_%row%.png", "samples/"+current_map.name.toLowerCase()+".png");
-		getTileView().addDetailLevel( 0.500f, "tiles/"+current_map.name.toLowerCase()+"/500/%col%_%row%.png", "samples/"+current_map.name.toLowerCase()+".png");
-		getTileView().addDetailLevel( 0.250f, "tiles/"+current_map.name.toLowerCase()+"/250/%col%_%row%.png", "samples/"+current_map.name.toLowerCase()+".png");
-		getTileView().addDetailLevel( 0.125f, "tiles/"+current_map.name.toLowerCase()+"/125/%col%_%row%.png", "samples/"+current_map.name.toLowerCase()+".png");
+		getTileView().addDetailLevel(1.000f, "tiles/" + current_map.name.toLowerCase() + "/1000/%col%_%row%.png");
+		getTileView().addDetailLevel(0.500f, "tiles/" + current_map.name.toLowerCase() + "/500/%col%_%row%.png");
+		getTileView().addDetailLevel(0.250f, "tiles/" + current_map.name.toLowerCase() + "/250/%col%_%row%.png");
+		getTileView().addDetailLevel(0.125f, "tiles/" + current_map.name.toLowerCase() + "/125/%col%_%row%.png");
 
 		// allow scaling past original size
-		getTileView().setScaleLimits( 0, 4 );
+		getTileView().setScaleLimits(0, 4);
 
 		// lets center all markers both horizontally and vertically
-		getTileView().setMarkerAnchorPoints( -0.5f, -0.5f );
+		getTileView().setMarkerAnchorPoints(-0.5f, -0.5f);
 
-		player = placeMarker( R.drawable.player_icon, 0, 0 );
+		player = placeMarker(R.drawable.player_icon, 0, 0);
 
 		// frame to the player
-		frameTo( current_map.player_x, (current_map.y-current_map.player_y) );
+		//frameTo(current_map.player_x, (current_map.y - current_map.player_y)); //TODO: fix this
 
 		//add event listener if user taps on player marker
-		getTileView().addMarkerEventListener(playerMarkerEventListener);
+		getTileView().setMarkerTapListener(playerMarkerEventListener);
 
 		//add event listener to see if the user is dragging
-		getTileView().addTileViewEventListener(dragListener);
+		//getTileView().addZoomPanListener(dragListener);
 
 		// sets scale (zoom level)
-		getTileView().setScale( 0.5 );
-		
+		getTileView().setScale(0.5f);
+
+		//add event listener to see if the user is dragging
+		getTileView().addZoomPanListener(new ZoomPanLayout.ZoomPanListener() {
+			@Override
+			public void onPanBegin(int x, int y, Origination origin) {
+				followPlayer = false;
+			}
+
+			@Override
+			public void onPanUpdate(int x, int y, Origination origin) {
+
+			}
+
+			@Override
+			public void onPanEnd(int x, int y, Origination origin) {
+
+			}
+
+			@Override
+			public void onZoomBegin(float scale, Origination origin) {
+
+			}
+
+			@Override
+			public void onZoomUpdate(float scale, Origination origin) {
+
+			}
+
+			@Override
+			public void onZoomEnd(float scale, Origination origin) {
+
+			}
+		});
+
 		if (mapThread == null) {
 			mapThread = new Thread(this);
 			mapThread.start();
 			mutex = true;
 		}
 	}
-	
-	private ImageView placeMarker( int resId, double x, double y ) {
-		ImageView imageView = new ImageView( this );
-		imageView.setImageResource( resId );
-		getTileView().addMarker( imageView, x, y );
+
+	private ImageView placeMarker(int resId, double x, double y) {
+		ImageView imageView = new ImageView(this);
+		imageView.setImageResource(resId);
+		getTileView().addMarker(imageView, x, y, 1.0f, 1.0f); //TODO: is this anchor right?
 		return imageView;
 	}
-	
+
 	private void updatePlayerMarker(Map cur_map) {
-		
+
 		final Map current_map = cur_map;
 		final ImageView player = this.player;
 
-		getTileView().post( new Runnable() {
+		getTileView().post(new Runnable() {
 			@Override
 			public void run() {
 				//Log.v("MapTileViewActivity", "Player info: " + current_map.player_x + ", " + current_map.player_y + ", " + current_map.player_rotation + ", " + current_map.vehicle);
 				//update existing information
-				
+
 				//make sure it's been initialized and we actually have data
 				if (current_map.player_x != 0.0f && current_map.player_y != 0.0f) {
 					//the two systems have a different origin 0,0 position, thus the subtraction
-					getTileView().moveMarker(player, current_map.player_x, (current_map.y-current_map.player_y));
+					getTileView().moveMarker(player, current_map.player_x, (current_map.y - current_map.player_y));
 				}
-				
+
 				//set whether we use the normal icon or vehicle icon
 				if (!current_map.vehicle) {
 					player.setImageResource(R.drawable.player_icon);
@@ -119,25 +153,18 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 				player.setRotation(current_map.player_rotation);
 
 				if (followPlayer) {
-					getTileView().scrollToAndCenter(new Point(Math.round(player.getX()), Math.round(player.getY())));
+					getTileView().scrollToAndCenter(Math.round(player.getX()), Math.round(player.getY()));
 				}
 			}
 		});
 	}
-	
-	private MarkerEventListener playerMarkerEventListener = new MarkerEventListener() {
+
+	private MarkerLayout.MarkerTapListener playerMarkerEventListener = new MarkerLayout.MarkerTapListener() {
 		@Override
 		public void onMarkerTap(View v, int x, int y) {
 			followPlayer = true;
-			getTileView().scrollToAndCenter(new Point(x, y));
+			getTileView().scrollToAndCenter(x, y);
 			Toast.makeText(getApplicationContext(), "Following player", Toast.LENGTH_SHORT).show();
-		}
-	};
-
-	private TileViewEventListenerImplementation dragListener = new TileViewEventListenerImplementation() {
-		@Override
-		public void onDrag(int x, int y) {
-			followPlayer = false;
 		}
 	};
 

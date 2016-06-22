@@ -33,7 +33,7 @@ public class TileViewActivity extends Activity {
 	@Override
 	public void onPause() {
 		super.onPause();
-		tileView.clear();
+		//tileView.clear(); //TODO: is this needed anymore? or should it be moved?
 	}
 
 	@Override
@@ -57,12 +57,13 @@ public class TileViewActivity extends Activity {
 	 * This is a convenience method to moveToAndCenter after layout (which won't happen if called directly in onCreate
 	 * see https://github.com/moagrius/TileView/wiki/FAQ
 	 */
-	public void frameTo( final double x, final double y ) {
+
+	/*public void frameTo( final double x, final double y ) {
 		getTileView().post( new Runnable() {
 			@Override
 			public void run() {
 				getTileView().moveToAndCenter( x, y );
 			}			
 		});		
-	}
+	}*/
 }
