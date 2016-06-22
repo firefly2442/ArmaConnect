@@ -1,0 +1,58 @@
+//http://www.vogella.com/tutorials/AndroidBuild/article.html
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+	//HACK
+	//https://discuss.gradle.org/t/gradle-thinks-2-10-is-less-than-2-2-when-resolving-plugins/13434/2
+	//System.properties['com.android.build.gradle.overrideVersionCheck'] = 'true'
+
+	dependencies {
+		classpath 'com.android.tools.build:gradle:2.1.2'
+	}
+}
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "21.1.2"
+
+                defaultConfig {
+                        targetSdkVersion 22
+                }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+
+        // Move the build types to build-types/<type>
+        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
+        // This moves them out of them default location under src/<type>/... which would
+        // conflict with src/ being used by the main source set.
+        // Adding new build types or product flavors should be accompanied
+        // by a similar customization.
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+}
+
+repositories {
+        mavenCentral() //for disklrucache http://mvnrepository.com/artifact/com.jakewharton/disklrucache
+		jcenter() //for tileview https://bintray.com/moagrius/maven/com.qozix.tileview/view
+    }
+
+dependencies {
+	compile 'com.qozix:tileview:2.1.7'
+	compile 'com.jakewharton:disklrucache:2.0.2'
+	compile 'com.android.support:appcompat-v7:22.0.0'
+}
