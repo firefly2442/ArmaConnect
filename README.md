@@ -67,6 +67,10 @@ Some images are part of the [Tango Icon Library](http://tango.freedesktop.org/Ta
 
 ### For Developers
 
+Opening the Android project:
+
+* Use [Android Studio](https://developer.android.com/studio/index.html) and import via Gradle
+
 The overview of events for networking between the Arma plugin and Android device is the following:
 
 * Plugin sends out UDP message on port 65041. This is similar to a heartbeat message since we don't know what IP address the Android device is running on.
