@@ -54,21 +54,21 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		getTileView().setSize(current_map.x, current_map.y);
 
 		// detail levels
-		getTileView().addDetailLevel(1.000f, "tiles/" + current_map.name.toLowerCase() + "/1000/%col%_%row%.png");
-		getTileView().addDetailLevel(0.500f, "tiles/" + current_map.name.toLowerCase() + "/500/%col%_%row%.png");
-		getTileView().addDetailLevel(0.250f, "tiles/" + current_map.name.toLowerCase() + "/250/%col%_%row%.png");
-		getTileView().addDetailLevel(0.125f, "tiles/" + current_map.name.toLowerCase() + "/125/%col%_%row%.png");
+		getTileView().addDetailLevel(1.000f, "tiles/" + current_map.name.toLowerCase() + "/1000/%d_%d.png");
+		getTileView().addDetailLevel(0.500f, "tiles/" + current_map.name.toLowerCase() + "/500/%d_%d.png");
+		getTileView().addDetailLevel(0.250f, "tiles/" + current_map.name.toLowerCase() + "/250/%d_%d.png");
+		getTileView().addDetailLevel(0.125f, "tiles/" + current_map.name.toLowerCase() + "/125/%d_%d.png");
 
 		// allow scaling past original size
 		getTileView().setScaleLimits(0, 4);
 
-		// lets center all markers both horizontally and vertically
+		// let's center all markers both horizontally and vertically
 		getTileView().setMarkerAnchorPoints(-0.5f, -0.5f);
 
 		player = placeMarker(R.drawable.player_icon, 0, 0);
 
 		// frame to the player
-		//frameTo(current_map.player_x, (current_map.y - current_map.player_y)); //TODO: fix this
+		frameTo(current_map.player_x, (current_map.y - current_map.player_y));
 
 		//add event listener if user taps on player marker
 		getTileView().setMarkerTapListener(playerMarkerEventListener);
@@ -122,7 +122,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 	private ImageView placeMarker(int resId, double x, double y) {
 		ImageView imageView = new ImageView(this);
 		imageView.setImageResource(resId);
-		getTileView().addMarker(imageView, x, y, 1.0f, 1.0f); //TODO: is this anchor right?
+		getTileView().addMarker(imageView, x, y, null, null);
 		return imageView;
 	}
 

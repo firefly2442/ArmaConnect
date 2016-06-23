@@ -27,13 +27,22 @@ public class TileViewActivity extends Activity {
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate( savedInstanceState );
 		tileView = new TileView( this );
+
+		/**
+		 * Set an id. This is necessary to enable the save state mechanism of Android.
+		 * It is retrieved from a resource value, but it can also be generated with
+		 * {@code View.generateViewId()}.
+		 */
+		tileView.setId( R.id.tileview_id );
+		tileView.setSaveEnabled( true );
+
 		setContentView( tileView );
 	}
 	
 	@Override
 	public void onPause() {
 		super.onPause();
-		//tileView.clear(); //TODO: is this needed anymore? or should it be moved?
+		tileView.pause();
 	}
 
 	@Override
@@ -58,12 +67,12 @@ public class TileViewActivity extends Activity {
 	 * see https://github.com/moagrius/TileView/wiki/FAQ
 	 */
 
-	/*public void frameTo( final double x, final double y ) {
+	public void frameTo( final double x, final double y ) {
 		getTileView().post( new Runnable() {
 			@Override
 			public void run() {
-				getTileView().moveToAndCenter( x, y );
+				getTileView().scrollToAndCenter( x, y );
 			}			
 		});		
-	}*/
+	}
 }
