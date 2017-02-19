@@ -17,8 +17,8 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
 
                 defaultConfig {
                         targetSdkVersion 22
@@ -47,12 +47,18 @@ android {
 }
 
 repositories {
-        mavenCentral() //for disklrucache http://mvnrepository.com/artifact/com.jakewharton/disklrucache
-		jcenter() //for tileview https://bintray.com/moagrius/maven/com.qozix.tileview/view
+    mavenCentral()
+    maven {
+        url '//for disklrucache http://mvnrepository.com/artifact/com.jakewharton/disklrucache'
     }
+    jcenter()
+    maven {
+        url '//for tileview https://bintray.com/moagrius/maven/com.qozix.tileview/view'
+    }
+}
 
 dependencies {
-	compile 'com.qozix:tileview:2.1.7'
-	compile 'com.jakewharton:disklrucache:2.0.2'
-	compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.qozix:tileview:2.2.6'
+    compile 'com.jakewharton:disklrucache:2.0.2'
+    compile 'com.android.support:appcompat-v7:25.0.0'
 }
