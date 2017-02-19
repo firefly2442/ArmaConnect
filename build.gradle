@@ -10,7 +10,7 @@ buildscript {
 	//System.properties['com.android.build.gradle.overrideVersionCheck'] = 'true'
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.1.2'
+		classpath 'com.android.tools.build:gradle:2.2.3'
 	}
 }
 apply plugin: 'com.android.application'
