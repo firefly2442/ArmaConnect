@@ -62,5 +62,5 @@ repositories {
 dependencies {
     compile 'com.qozix:tileview:2.2.6'
     compile 'com.jakewharton:disklrucache:2.0.2'
-    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
 }
