@@ -53,7 +53,7 @@ public class SettingsActivity extends Activity {
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 					SharedPreferences.Editor editor = settings.edit();
 					editor.putBoolean("keepScreenOn", isChecked);
-					editor.commit();
+					editor.apply();
 					showSaveMessage();
 					updateSettings();
 				}
@@ -63,7 +63,7 @@ public class SettingsActivity extends Activity {
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 					SharedPreferences.Editor editor = settings.edit();
 					editor.putBoolean("metricUnits", isChecked);
-					editor.commit();
+					editor.apply();
 					showSaveMessage();
 					updateSettings();
 				}
