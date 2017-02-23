@@ -35,6 +35,7 @@ public class TCP implements Runnable {
 	
 	public void run()
 	{
+		//noinspection InfiniteLoopStatement
 		while (true)
 		{
 			if (UDP.ipaddress != null)
@@ -51,7 +52,8 @@ public class TCP implements Runnable {
 					
 	                //TODO: check to make sure this is working
 	                //keep TCP socket connection open for as long as possible
-	                while (true) {
+					//noinspection InfiniteLoopStatement
+					while (true) {
 		                //TODO: look to see if we have any data that needs to be sent to Arma
 		                //map markers, etc.
 

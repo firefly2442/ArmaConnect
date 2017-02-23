@@ -38,6 +38,7 @@ public class UDP implements Runnable {
 			socket = new DatagramSocket(65041);
 			byte[] receiveData = new byte[1024];
 
+			//noinspection InfiniteLoopStatement
 			while (true) {
 				DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
 				try {
