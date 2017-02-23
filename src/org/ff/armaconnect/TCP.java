@@ -65,7 +65,7 @@ public class TCP implements Runnable {
 		                //Log.v("TCP", "Started read.");
 		                int bytesReceived;
 		                String returnedString = "";
-		                while ((bytesReceived = in.read(returned)) != -1) {
+		                while ((in.read(returned)) != -1) {
 		                	String converted = new String(returned, "UTF-8").trim();
 		                	returnedString = returnedString + converted;
 		                	//Log.v("TCP", "Finished with one read.");

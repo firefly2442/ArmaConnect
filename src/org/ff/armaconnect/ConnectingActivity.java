@@ -53,9 +53,9 @@ public class ConnectingActivity extends Activity implements Runnable {
 		    launching = extras.getString("launching");
 		}
 
-		if (launching.equals("show_map")) {
+		if (launching != null && launching.equals("show_map")) {
 			((TextView) findViewById(R.id.textHelpMessage)).setText(getString(R.string.datetime_helpmessage_GPS));
-		} else if (launching.equals("show_datetime")) {
+		} else if (launching != null && launching.equals("show_datetime")) {
 			((TextView) findViewById(R.id.textHelpMessage)).setText(getString(R.string.datetime_helpmessage_Watch));
 		}
 		
