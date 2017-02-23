@@ -186,6 +186,7 @@ public class WeatherActivity extends FragmentActivity implements Runnable {
 			if (last_update >= 8) {
 				//we haven't received any new information in awhile, go back to connecting page
 				Intent intent = new Intent( WeatherActivity.this, ConnectingActivity.class );
+				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				intent.putExtra("launching", "show_weather");
 		    	startActivity( intent );
 		    	finish(); //this will "destroy" this activity

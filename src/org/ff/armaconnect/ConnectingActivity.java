@@ -100,6 +100,7 @@ public class ConnectingActivity extends Activity implements Runnable {
 			if (DateTimeActivity.isDateTimeSet()) {
 				//the map has changed or we need to load in for the first time
 				Intent intent = new Intent( ConnectingActivity.this, DateTimeActivity.class );
+				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		    	startActivity( intent );
 		    	finish(); //this will "destroy" this activity
 			}
@@ -119,6 +120,7 @@ public class ConnectingActivity extends Activity implements Runnable {
 			if (MapTileViewActivity.maps.getCurrentMap() != null) {
 				//the map has changed or we need to load in for the first time
 				Intent intent = new Intent( ConnectingActivity.this, MapTileViewActivity.class );
+				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		    	startActivity( intent );
 		    	finish(); //this will "destroy" this activity
 			}
@@ -137,6 +139,7 @@ public class ConnectingActivity extends Activity implements Runnable {
 			//check to make sure we've gotten some data first
 			if (WeatherActivity.isWeatherSet()) {
 				Intent intent = new Intent( ConnectingActivity.this, WeatherActivity.class );
+				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		    	startActivity( intent );
 		    	finish(); //this will "destroy" this activity
 			}

@@ -73,6 +73,7 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick( View v ) {
 			Intent intent = new Intent( MainActivity.this, ConnectingActivity.class );
+			intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 			//https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android
 			intent.putExtra("launching", getResources().getResourceEntryName(v.getId()));
 			startActivity( intent );

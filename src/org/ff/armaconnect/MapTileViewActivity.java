@@ -195,6 +195,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 				Log.v("MapTileViewActivity", "Disconnected, running reset.");
 				maps.resetMap();
 				Intent intent = new Intent( MapTileViewActivity.this, ConnectingActivity.class );
+				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				intent.putExtra("launching", "show_map");
 		    	startActivity( intent );
 		    	finish(); //this will "destroy" this activity
