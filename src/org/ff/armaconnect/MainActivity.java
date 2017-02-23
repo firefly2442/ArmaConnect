@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-		HashMap<Integer, Class<?>> implementations = new HashMap<Integer, Class<?>>();
+		HashMap<Integer, Class<?>> implementations = new HashMap<>();
 		implementations.put( R.id.show_map, MapTileViewActivity.class );
 		implementations.put( R.id.show_datetime, DateTimeActivity.class );
 		implementations.put( R.id.show_weather, WeatherActivity.class );

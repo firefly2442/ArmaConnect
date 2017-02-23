@@ -63,7 +63,6 @@ public class TCP implements Runnable {
 
 		                byte[] returned = new byte[16384]; //16 KB (corresponds to callExtension limit in Arma)
 		                //Log.v("TCP", "Started read.");
-		                int bytesReceived;
 		                String returnedString = "";
 		                while ((in.read(returned)) != -1) {
 		                	String converted = new String(returned, "UTF-8").trim();
@@ -90,12 +89,6 @@ public class TCP implements Runnable {
 						}
 	                }
 
-				} catch (SocketException e1) {
-					//e1.printStackTrace();
-					UDP.ipaddress = null;
-				} catch (UnknownHostException e) {
-					//e.printStackTrace();
-					UDP.ipaddress = null;
 				} catch (IOException e) {
 					//e.printStackTrace();
 					UDP.ipaddress = null;

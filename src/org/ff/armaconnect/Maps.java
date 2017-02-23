@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Maps {
 
-	private ArrayList<Map> available_maps = new ArrayList<Map>();
+	private ArrayList<Map> available_maps = new ArrayList<>();
 	private int current_map = -1;
 	private long last_update;
 	

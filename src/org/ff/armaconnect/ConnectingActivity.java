@@ -81,12 +81,16 @@ public class ConnectingActivity extends Activity implements Runnable {
 
 	@Override
 	public void run() {
-		if (launching.equals("show_map")) {
-			waitForMapInformation();
-		} else if (launching.equals("show_datetime")) {
-			waitForDateTime();
-		} else if (launching.equals("show_weather")) {
-			waitForWeather();
+		switch (launching) {
+			case "show_map":
+				waitForMapInformation();
+				break;
+			case "show_datetime":
+				waitForDateTime();
+				break;
+			case "show_weather":
+				waitForWeather();
+				break;
 		}
 	}
 	
