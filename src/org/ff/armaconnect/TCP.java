@@ -59,16 +59,16 @@ public class TCP implements Runnable {
 		                out.writeBytes("This is from java.");
 		                out.writeBytes(".Arma2NETConnectEnd.");
 		                out.flush();
-		                Log.v("TCP", "Finished writing and flushing.");
+		                //Log.v("TCP", "Finished writing and flushing.");
 
 		                byte[] returned = new byte[16384]; //16 KB (corresponds to callExtension limit in Arma)
-		                Log.v("TCP", "Started read.");
+		                //Log.v("TCP", "Started read.");
 		                int bytesReceived;
 		                String returnedString = "";
 		                while ((bytesReceived = in.read(returned)) != -1) {
 		                	String converted = new String(returned, "UTF-8").trim();
 		                	returnedString = returnedString + converted;
-		                	Log.v("TCP", "Finished with one read.");
+		                	//Log.v("TCP", "Finished with one read.");
 		                	if (returnedString.contains(".Arma2NETConnectEnd."))
 		                		break;
 		                }

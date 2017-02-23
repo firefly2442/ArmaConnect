@@ -50,6 +50,8 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 
 		Map current_map = maps.getCurrentMap();
 
+		Log.v("MapTileViewActivity", "MapTileView onCreate.");
+
 		// size of original image at 100% scale
 		getTileView().setSize(current_map.x, current_map.y);
 
