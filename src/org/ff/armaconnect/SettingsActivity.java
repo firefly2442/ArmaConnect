@@ -78,15 +78,8 @@ public class SettingsActivity extends Activity {
 	}
 
 	private static void updateSettings() {
-		if (settings.getBoolean("keepScreenOn", true))
-			keepScreenOn = true;
-		else
-			keepScreenOn = false;
-
-		if (settings.getBoolean("metricUnits", true))
-			metricUnits = true;
-		else
-			metricUnits = false;
+		keepScreenOn = settings.getBoolean("keepScreenOn", true);
+		metricUnits = settings.getBoolean("metricUnits", true);
 	}
 	
 	private void showSaveMessage() {
