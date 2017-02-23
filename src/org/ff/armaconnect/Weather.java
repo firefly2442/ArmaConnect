@@ -15,16 +15,16 @@ package org.ff.armaconnect;
 
 public class Weather {
 	
-	public float overcast; //0-1
-	public float fog; //0-1
-	public float rain; //0-1
-	public float lightning; //0-1
-	public float waves; //0-1
-	public float wind_strength; //0-1
-	public float wind_gusts; //0-1
-	public float wind_speed; //in m/s
-	public float wind_direction_degrees; //0-360
-	public float humidity; //0-1
+	public final float overcast; //0-1
+	public final float fog; //0-1
+	public final float rain; //0-1
+	public final float lightning; //0-1
+	public final float waves; //0-1
+	public final float wind_strength; //0-1
+	public final float wind_gusts; //0-1
+	public final float wind_speed; //in m/s
+	public final float wind_direction_degrees; //0-360
+	public final float humidity; //0-1
 	
 	public Weather(float o, float f, float r, float l, float w, float wi_strength, float wi_g, float wi_spd, float wi_d, float h)
 	{

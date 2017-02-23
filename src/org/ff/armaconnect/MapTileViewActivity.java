@@ -161,7 +161,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		});
 	}
 
-	private MarkerLayout.MarkerTapListener playerMarkerEventListener = new MarkerLayout.MarkerTapListener() {
+	private final MarkerLayout.MarkerTapListener playerMarkerEventListener = new MarkerLayout.MarkerTapListener() {
 		@Override
 		public void onMarkerTap(View v, int x, int y) {
 			followPlayer = true;

@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
 	}
 
 
-	private View.OnClickListener labelClickListener = new View.OnClickListener() {
+	private final View.OnClickListener labelClickListener = new View.OnClickListener() {
 		@Override
 		public void onClick( View v ) {
 			Intent intent = new Intent( MainActivity.this, ConnectingActivity.class );

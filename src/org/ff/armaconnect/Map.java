@@ -22,7 +22,7 @@ public class Map {
 	//player position
 	public float player_x;
 	public float player_y;
-	public float scale;
+	public final float scale;
 	//player orientation/rotation
 	public float player_rotation;
 	public boolean vehicle;
