@@ -26,4 +26,8 @@
     <string name="weather_Fog">Fog</string>
     <string name="weather_Waves">Waves</string>
 
+    <string-array name="tips">
+        <item>Tip: Tap your player icon on the map to automatically follow.</item>
+        <item>Tip: The options screen allows you to set metric vs. imperial units of measurement.</item>
+    </string-array>
 </resources>

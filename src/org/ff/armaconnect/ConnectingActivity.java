@@ -22,6 +22,7 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
+import java.util.Random;
 
 public class ConnectingActivity extends Activity implements Runnable {
 	
@@ -35,21 +36,17 @@ public class ConnectingActivity extends Activity implements Runnable {
 		setContentView(R.layout.activity_connecting);
 		
 		Log.v("ConnectingActivity", "ConnectingActivity onCreate.");
+
+		String[] tips = getResources().getStringArray(R.array.tips);
+
+		//pick a random tip to use and display
+		Random random = new Random();
+		int index = random.nextInt(2);
+		((TextView) findViewById(R.id.tipText)).setText(tips[index]);
 		
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-		
-		//add blinking animation to text message
-		TextView message = (TextView) findViewById(R.id.connectingTextView);
 
-		Animation anim = new AlphaAnimation(0.0f, 1.0f);
-		anim.setDuration(2000);
-		anim.setStartOffset(20);
-		anim.setRepeatMode(Animation.REVERSE);
-		anim.setRepeatCount(Animation.INFINITE);
-		
-		message.startAnimation(anim);
-		
 		//get data that was passed in
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
