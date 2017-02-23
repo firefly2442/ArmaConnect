@@ -33,6 +33,7 @@ public class SettingsActivity extends Activity {
 	private static SharedPreferences settings;
 
 	private static boolean keepScreenOn;
+	private static boolean metricUnits;
 
 	public void onCreate( Bundle savedInstanceState ) {
 		super.onCreate(savedInstanceState);
@@ -42,18 +43,30 @@ public class SettingsActivity extends Activity {
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		//setup UI
-		CheckBox checkBox = (CheckBox)findViewById(R.id.screenOnCheckBox);
-        checkBox.setChecked(keepScreenOn());
+		CheckBox screenCheckBox = (CheckBox)findViewById(R.id.screenOnCheckBox);
+        screenCheckBox.setChecked(keepScreenOn());
+		CheckBox metricCheckBox = (CheckBox)findViewById(R.id.metricUnitsCheckBox);
+		metricCheckBox.setChecked(metricUnits());
 
-        checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				SharedPreferences.Editor editor = settings.edit();
-				editor.putBoolean("keepScreenOn", isChecked);
-				editor.commit();
-				showSaveMessage();
-				updateSettings();
-			}
+        screenCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putBoolean("keepScreenOn", isChecked);
+					editor.commit();
+					showSaveMessage();
+					updateSettings();
+				}
+		});
+		metricCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					SharedPreferences.Editor editor = settings.edit();
+					editor.putBoolean("metricUnits", isChecked);
+					editor.commit();
+					showSaveMessage();
+					updateSettings();
+				}
       	});
 	}
 
@@ -69,6 +82,11 @@ public class SettingsActivity extends Activity {
 			keepScreenOn = true;
 		else
 			keepScreenOn = false;
+
+		if (settings.getBoolean("metricUnits", true))
+			metricUnits = true;
+		else
+			metricUnits = false;
 	}
 	
 	private void showSaveMessage() {
@@ -80,5 +98,8 @@ public class SettingsActivity extends Activity {
 	
 	public static boolean keepScreenOn() {
 		return keepScreenOn;
+	}
+	public static boolean metricUnits() {
+		return metricUnits;
 	}
 }

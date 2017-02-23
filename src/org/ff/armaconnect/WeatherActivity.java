@@ -109,7 +109,11 @@ public class WeatherActivity extends FragmentActivity implements Runnable {
 				//TODO: check if this means the wind is "coming" or "going", do we need to add/subtract 180 or not...?
 				imageWind.setRotation(weather.wind_direction_degrees);
 				DecimalFormat df = new DecimalFormat("#.#");
-				String wind = df.format(weather.wind_speed) + " m/s";
+				String wind = "";
+				if (SettingsActivity.metricUnits())
+					wind = df.format(weather.wind_speed) + " m/s";
+				else
+					wind = df.format(weather.wind_speed*2.23694) + " mph";
 				if (weather.wind_strength == 0) {
 					wind = wind + " - calm";
 				} else if (weather.wind_strength < 0.3) {
