@@ -22,15 +22,17 @@ public class Map {
 	//player position
 	public float player_x;
 	public float player_y;
+	public float scale;
 	//player orientation/rotation
 	public float player_rotation;
 	public boolean vehicle;
 	
-	public Map(String name, int x, int y)
+	public Map(String name, int x, int y, float scale)
 	{
 		//constructor
 		this.name = name;
 		this.x = x;
 		this.y = y;
+		this.scale = scale;
 	}
 }

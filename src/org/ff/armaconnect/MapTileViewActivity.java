@@ -138,7 +138,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 				//update existing information
 
 				//make sure it's been initialized and we actually have data
-				if (current_map.player_x != 0.0f && current_map.player_y != 0.0f) {
+				if (current_map.player_x != 0.0f || current_map.player_y != 0.0f) {
 					//the two systems have a different origin 0,0 position, thus the subtraction
 					getTileView().moveMarker(player, current_map.player_x, (current_map.y - current_map.player_y));
 				}

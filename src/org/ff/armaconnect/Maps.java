@@ -23,10 +23,15 @@ public class Maps {
 	
 	public Maps()
 	{
+		//https://community.bistudio.com/wiki/BIS_fnc_mapSize
+		//Use this to get the map size via SQF, for example:
+		//"Altis" call BIS_fnc_mapSize
+
 		//constructor
-		//map name and x,y dimension
-		available_maps.add(new Map("Stratis", 8192, 8192));
-		available_maps.add(new Map("Altis", 500, 500)); //not currently implemented, just place-holder
+		//map name, x,y dimension, and scaling
+		available_maps.add(new Map("Stratis", 8192, 8192, 1.0f));
+		available_maps.add(new Map("Altis", 11520, 11520, 0.375f)); //30720 x 30720 original size
+		available_maps.add(new Map("Tanoa", 15360, 15360, 1.0f)); //15360 x 15360 original size
 		current_map = 0;
 	}
 	
@@ -50,11 +55,8 @@ public class Maps {
 	{
 		for (int i = 0; i < available_maps.size(); i++) {
 			if (available_maps.get(i).name.equals(mapname)) {
-				//check to make sure player position doesn't go outside map boundaries
-				if (x <= available_maps.get(i).x)
-					available_maps.get(i).player_x = x;
-				if (y <= available_maps.get(i).y)
-					available_maps.get(i).player_y = y;
+				available_maps.get(i).player_x = x * available_maps.get(i).scale;
+				available_maps.get(i).player_y = y * available_maps.get(i).scale;
 				available_maps.get(i).player_rotation = rot;
 				available_maps.get(i).vehicle = v;
 				current_map = i;
