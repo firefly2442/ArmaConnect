@@ -15,13 +15,11 @@ package org.ff.armaconnect;
 
 import org.ff.armaconnect.R;
 
-import com.qozix.tileview.TileView;
 import com.qozix.tileview.markers.MarkerLayout;
 import com.qozix.tileview.widgets.ZoomPanLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

@@ -13,7 +13,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 package org.ff.armaconnect;
 
-import java.util.Arrays;
 import java.util.Calendar;
 
 import android.util.Log;
@@ -29,27 +28,29 @@ public class ParseData {
 		//account for when we have multiple messages in one stream of data
 		int i = 0;
 		while (i < split.length) {
-			if (split[i].equals("player")) {
-				if (!MapTileViewActivity.maps.setPlayerPosition(split[i+1], Float.parseFloat(split[i+2]), Float.parseFloat(split[i+3]), Float.parseFloat(split[i+4]), Boolean.parseBoolean(split[i+5])))
-					Log.v("ParseData", "Unable to set the player position.");
-				i = i + 6;
-			}
-			else if (split[i].equals("datetime")) {
-				//returned milliseconds is not used
-				//Java calendars start with 0 for January, thus the subtraction
-				Calendar gc = Calendar.getInstance();
-				gc.set(Integer.parseInt(split[i+1]), Integer.parseInt(split[i+2])-1, Integer.parseInt(split[i+3]), Integer.parseInt(split[i+4]), Integer.parseInt(split[i+5]), Integer.parseInt(split[i+6]));
-				DateTimeActivity.updateDateTime(gc);
-				i = i + 8;
-			}
-			else if (split[i].equals("weather")) {
-				Weather w = new Weather(Float.parseFloat(split[i+1]), Float.parseFloat(split[i+3]), Float.parseFloat(split[i+5]), Float.parseFloat(split[i+7]), Float.parseFloat(split[i+9]), Float.parseFloat(split[i+11]), Float.parseFloat(split[i+13]), Float.parseFloat(split[i+15]), Float.parseFloat(split[i+17]), Float.parseFloat(split[i+19]));
-				Weather f = new Weather(Float.parseFloat(split[i+2]), Float.parseFloat(split[i+4]), Float.parseFloat(split[i+6]), Float.parseFloat(split[i+8]), Float.parseFloat(split[i+10]), Float.parseFloat(split[i+12]), Float.parseFloat(split[i+14]), Float.parseFloat(split[i+16]), Float.parseFloat(split[i+18]), Float.parseFloat(split[i+20]));
-				WeatherActivity.updateWeather(w, f);
-				i = i + 21;
-			}
-			else {
-				i++;
+			switch (split[i]) {
+				case "player":
+					if (!MapTileViewActivity.maps.setPlayerPosition(split[i + 1], Float.parseFloat(split[i + 2]), Float.parseFloat(split[i + 3]), Float.parseFloat(split[i + 4]), Boolean.parseBoolean(split[i + 5])))
+						Log.v("ParseData", "Unable to set the player position.");
+					i = i + 6;
+					break;
+				case "datetime":
+					//returned milliseconds is not used
+					//Java calendars start with 0 for January, thus the subtraction
+					Calendar gc = Calendar.getInstance();
+					gc.set(Integer.parseInt(split[i + 1]), Integer.parseInt(split[i + 2]) - 1, Integer.parseInt(split[i + 3]), Integer.parseInt(split[i + 4]), Integer.parseInt(split[i + 5]), Integer.parseInt(split[i + 6]));
+					DateTimeActivity.updateDateTime(gc);
+					i = i + 8;
+					break;
+				case "weather":
+					Weather w = new Weather(Float.parseFloat(split[i + 1]), Float.parseFloat(split[i + 3]), Float.parseFloat(split[i + 5]), Float.parseFloat(split[i + 7]), Float.parseFloat(split[i + 9]), Float.parseFloat(split[i + 11]), Float.parseFloat(split[i + 13]), Float.parseFloat(split[i + 15]), Float.parseFloat(split[i + 17]), Float.parseFloat(split[i + 19]));
+					Weather f = new Weather(Float.parseFloat(split[i + 2]), Float.parseFloat(split[i + 4]), Float.parseFloat(split[i + 6]), Float.parseFloat(split[i + 8]), Float.parseFloat(split[i + 10]), Float.parseFloat(split[i + 12]), Float.parseFloat(split[i + 14]), Float.parseFloat(split[i + 16]), Float.parseFloat(split[i + 18]), Float.parseFloat(split[i + 20]));
+					WeatherActivity.updateWeather(w, f);
+					i = i + 21;
+					break;
+				default:
+					i++;
+					break;
 			}
 		}
 	}
