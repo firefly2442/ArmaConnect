@@ -129,26 +129,26 @@ public class WeatherActivity extends FragmentActivity implements Runnable {
 				
 				//TODO: convert Arma 0-1 value to a visibility distance (in meters)
 				if (weather.fog == 0) {
-					textFog.setText("Clear visibility");
+					textFog.setText(getString(R.string.weather_Fog_0));
 				} else if (weather.fog < 0.3) {
-					textFog.setText("Mostly clear visibility");
+					textFog.setText(getString(R.string.weather_Fog_0_3));
 				} else if (weather.fog < 0.7) {
-					textFog.setText("Restricted visibility");
+					textFog.setText(getString(R.string.weather_Fog_0_7));
 				} else {
-					textFog.setText("Very low visibility");
+					textFog.setText(getString(R.string.weather_Fog_1_0));
 				}
 				
 				//TODO: can we convert Arma 0-1 value to a meter height?
 				//then we could have a proper definition
 				//https://en.wikipedia.org/wiki/Sea_state
 				if (weather.waves == 0) {
-					textWaves.setText("Calm seas");
+					textWaves.setText(getString(R.string.weather_Waves_0));
 				} else if (weather.waves < 0.3) {
-					textWaves.setText("Mostly calm seas");
+					textWaves.setText(getString(R.string.weather_Waves_0_3));
 				} else if (weather.waves < 0.7) {
-					textWaves.setText("Moderately choppy seas");
+					textWaves.setText(getString(R.string.weather_Waves_0_7));
 				} else {
-					textWaves.setText("Extreme swells");
+					textWaves.setText(getString(R.string.weather_Waves_1_0));
 				}
 			}
 		});

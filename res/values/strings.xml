@@ -25,6 +25,14 @@
     <string name="weather_Humidity">Humidity</string>
     <string name="weather_Fog">Fog</string>
     <string name="weather_Waves">Waves</string>
+    <string name="weather_Fog_0">Clear visibility</string>
+    <string name="weather_Fog_0_3">Mostly clear visibility</string>
+    <string name="weather_Fog_0_7">Restricted visibility</string>
+    <string name="weather_Fog_1_0">Very low visibility</string>
+    <string name="weather_Waves_0">Calm seas</string>
+    <string name="weather_Waves_0_3">Mostly calm seas</string>
+    <string name="weather_Waves_0_7">Moderately choppy seas</string>
+    <string name="weather_Waves_1_0">Extreme swells</string>
 
     <string-array name="tips">
         <item>Tip: Tap your player icon on the map to automatically follow.</item>
