@@ -9,8 +9,6 @@
     <string name="settings_keepscreenon">Keep Screen On (No Sleeping)</string>
     <string name="settings_metricunits">Use Metric Units (Over Imperial)</string>
     <string name="connecting_message">Waiting for Arma game connection&#8230;</string>
-    <string name="datetime_Date">Date:</string>
-    <string name="datetime_Time">Time:</string>
     <string name="datetime_helpmessage_GPS">Make sure you have a GPS.</string>
     <string name="datetime_helpmessage_Watch">Make sure you have a Watch.</string>
     <string name="weather_Current">Current Weather</string>

@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 
 import org.ff.armaconnect.R;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,7 +29,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	
-	public static UDP udp;
+	private static UDP udp;
 	public static TCP tcp;
 
 	@Override
@@ -47,7 +48,7 @@ public class MainActivity extends Activity {
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-		HashMap<Integer, Class<?>> implementations = new HashMap<>();
+		@SuppressLint("UseSparseArrays") HashMap<Integer, Class<?>> implementations = new HashMap<>();
 		implementations.put( R.id.show_map, MapTileViewActivity.class );
 		implementations.put( R.id.show_datetime, DateTimeActivity.class );
 		implementations.put( R.id.show_weather, WeatherActivity.class );

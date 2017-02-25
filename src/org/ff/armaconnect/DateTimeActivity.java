@@ -18,6 +18,7 @@ import java.util.Calendar;
 
 import org.ff.armaconnect.R;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,11 +63,12 @@ public class DateTimeActivity extends Activity implements Runnable {
 	private void updateDateTime() {
 		
 		this.findViewById(android.R.id.content).post( new Runnable() {
+			@SuppressLint("SimpleDateFormat")
 			@Override
 			public void run() {
 				//http://javatechniques.com/blog/dateformat-and-simpledateformat-examples/
 				TextView textDateValue = (TextView) findViewById(R.id.textDateValue);
-				SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy");
+				@SuppressLint("SimpleDateFormat") SimpleDateFormat date_format = new SimpleDateFormat("MMM d, yyyy");
 			    textDateValue.setText(date_format.format(datetime.getTime()));
 			    
 			    TextView textTimeValue = (TextView) findViewById(R.id.textTimeValue);
