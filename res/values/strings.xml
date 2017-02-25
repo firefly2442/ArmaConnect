@@ -7,7 +7,7 @@
     <string name="menu_Weather">Weather</string>
     <string name="menu_Settings">Settings</string>
     <string name="settings_keepscreenon">Keep Screen On (No Sleeping)</string>
-    <string name="settings_metricunits">Use metric units (over imperial)</string>
+    <string name="settings_metricunits">Use Metric Units (Over Imperial)</string>
     <string name="connecting_message">Waiting for Arma game connection&#8230;</string>
     <string name="datetime_Date">Date:</string>
     <string name="datetime_Time">Time:</string>
