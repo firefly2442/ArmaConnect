@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
 	
 	private static UDP udp;
 	public static TCP tcp;
+	public static MapDownload md;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class MainActivity extends Activity {
 			udp = new UDP();
 		if (tcp == null)
 			tcp = new TCP();
+		if (md == null)
+			md = new MapDownload();
 		
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
