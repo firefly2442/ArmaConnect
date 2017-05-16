@@ -2,18 +2,24 @@ package org.ff.armaconnect;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.os.Environment;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.io.File;
 
 public class MapDownload implements Runnable {
+
+    public static float progress = 0;
+    private static Context c;
 
     public MapDownload()
     {
@@ -57,25 +63,54 @@ public class MapDownload implements Runnable {
                     Log.v("MapDownload", "From plugin: " + returnedString);
 
                     //Create folders if necessary or download the file
-                    String[] files = returnedString.split("\n");
-                    for (int i = 0; i < files.length; i++) {
-                        if (files[i].endsWith(".png")) {
-
-                        } else {
-                            //create folder
-                            File mydir = Context.getDir("mydir", Context.MODE_PRIVATE); //Creating an internal dir;
-                            File fileWithinMyDir = new File(mydir, "myfile"); //Getting a file within the dir.
-                            FileOutputStream out = new FileOutputStream(fileWithinMyDir);
-                        }
+                    //default location for me: /data/data/org.ff.armaconnect/files
+                    File f = new File(c.getFilesDir(), "maps");
+                    if (!f.exists()) {
+                        f.mkdir();
+                        Log.v("MapDownload", "Finished creating root maps folder: " + c.getFilesDir()+"/maps");
                     }
 
+                    String[] files = returnedString.split("\n");
+                    for (int i = 0; i < files.length; i++) {
+                        files[i] = files[i].replace("\\", "/"); //replaces all occurences
+                        if (files[i].endsWith(".png")) {
+                            //get file
+                            Log.v("MapDownload", "Requesting file: " + files[i]);
+                            out.writeBytes(files[i]);
+                            out.writeBytes(".GetFile.");
+                            out.flush();
+                            Log.v("MapDownload", "Finished request for file.");
 
-
+                            File file_loc = new File(c.getFilesDir()+"/maps"+files[i]);
+                            FileOutputStream out_stream = new FileOutputStream (new File(file_loc.getAbsolutePath().toString()), true);
+                            int count;
+                            String returnedFile = "";
+                            byte[] buffer = new byte[32000]; //32 KB
+                            while ((count = in.read(buffer)) > 0) {
+                                out_stream.write(buffer, 0, count);
+                            }
+                            out_stream.close();
+                            Log.v("MapDownload", "Finished writing file: " + c.getFilesDir()+"/maps"+files[i]);
+                        } else {
+                            //create folder
+                            f = new File(c.getFilesDir(), "/maps"+files[i]);
+                            if (!f.exists()) {
+                                f.mkdir();
+                                Log.v("MapDownload", "Finished creating folder: " + c.getFilesDir()+"/maps"+files[i]);
+                            }
+                        }
+                    }
+                    out.close();
+                    in.close();
                 } catch (IOException e) {
                     //e.printStackTrace();
                     UDP.ipaddress = null;
                 }
             }
         }
+    }
+
+    public static void initializeMapDownload(Context context) {
+        c = context;
     }
 }

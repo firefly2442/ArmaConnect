@@ -39,6 +39,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		SettingsActivity.initializeSettings(getApplicationContext());
+		MapDownload.initializeMapDownload(getApplicationContext());
 
 		//start networking
 		if (udp == null)
