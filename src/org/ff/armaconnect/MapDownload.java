@@ -60,7 +60,7 @@ public class MapDownload implements Runnable {
                     }
 
                     returnedString = returnedString.replace(".GetMapFiles.", "");
-                    Log.v("MapDownload", "From plugin: " + returnedString);
+                    //Log.v("MapDownload", "From plugin: " + returnedString);
 
                     //Create folders if necessary or download the file
                     //default location for me: /data/data/org.ff.armaconnect/files
@@ -75,36 +75,42 @@ public class MapDownload implements Runnable {
                         files[i] = files[i].replace("\\", "/"); //replaces all occurences
                         if (files[i].endsWith(".png")) {
                             //get file
-                            Log.v("MapDownload", "Requesting file: " + files[i]);
-                            out.writeBytes(files[i]);
+                            String[] size_location = files[i].split("\t");
+                            int toWriteSize = Integer.parseInt(size_location[0]);
+                            Log.v("MapDownload", "Requesting file: " + size_location[1] + " with size: " + toWriteSize);
+                            out.writeBytes(size_location[1]);
                             out.writeBytes(".GetFile.");
                             out.flush();
                             Log.v("MapDownload", "Finished request for file.");
 
-                            File file_loc = new File(c.getFilesDir()+"/maps"+files[i]);
-                            FileOutputStream out_stream = new FileOutputStream (new File(file_loc.getAbsolutePath().toString()), true);
+                            File file_loc = new File(c.getFilesDir()+"/maps"+size_location[1]);
+                            FileOutputStream out_stream = new FileOutputStream (new File(file_loc.getAbsolutePath().toString()), false);
                             int count;
                             String returnedFile = "";
                             byte[] buffer = new byte[32000]; //32 KB
                             while ((count = in.read(buffer)) > 0) {
                                 out_stream.write(buffer, 0, count);
+                                Log.v("MapDownload", "Wrote bytes: " + count);
+                                toWriteSize = toWriteSize - count;
+                                if (toWriteSize <= 0)
+                                    break;
                             }
                             out_stream.close();
-                            Log.v("MapDownload", "Finished writing file: " + c.getFilesDir()+"/maps"+files[i]);
+                            Log.v("MapDownload", "Finished writing file: " + file_loc.getPath());
                         } else {
                             //create folder
                             f = new File(c.getFilesDir(), "/maps"+files[i]);
                             if (!f.exists()) {
                                 f.mkdir();
-                                Log.v("MapDownload", "Finished creating folder: " + c.getFilesDir()+"/maps"+files[i]);
+                                Log.v("MapDownload", "Finished creating folder: " + f.getPath());
                             }
                         }
                     }
                     out.close();
                     in.close();
-                } catch (IOException e) {
-                    //e.printStackTrace();
-                    UDP.ipaddress = null;
+                    socket.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }
