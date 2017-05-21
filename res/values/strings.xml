@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">Arma Connect</string>
+	<string name="downloading_maps_message">Downloading Maps</string>
+	<string name="Finish_message">Finish</string>
     <string name="menu_MapGPS">Map/GPS</string>
     <string name="menu_DateTime">Watch</string>
     <string name="menu_Weather">Weather</string>
@@ -36,4 +38,5 @@
         <item>Tip: Tap your player icon on the map to automatically follow.</item>
         <item>Tip: The options screen allows you to set metric vs. imperial units of measurement.</item>
     </string-array>
+    <string name="title_activity_map_download">MapDownloadActivity</string>
 </resources>
