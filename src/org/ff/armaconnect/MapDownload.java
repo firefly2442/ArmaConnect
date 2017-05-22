@@ -59,7 +59,7 @@ public class MapDownload implements Runnable {
                             break;
                         }
                     }
-                    returnedSize = returnedSize.replace(".GetListSize.", "");
+                    returnedSize = returnedSize.replace(".GetListSize.", ""); //in string characters length
                     Log.v("MapDownload", "Returned file list size: " + returnedSize);
 
                     //all message passing uses UTF-8 format
@@ -68,13 +68,16 @@ public class MapDownload implements Runnable {
                     out.flush();
                     //Log.v("MapDownload", "Finished request for map file listing.");
 
-                    byte[] customReturned = new byte[Integer.parseInt(returnedSize)];
+                    //https://stackoverflow.com/questions/19839172/how-to-read-all-of-inputstream-in-server-socket-java
+                    byte[] customReturned = new byte[32000]; //32 KB
                     String returnedString = "";
-                    while ((in.read(customReturned)) > 0) {
-                        String converted = new String(customReturned, "UTF-8").trim();
-                        returnedString = returnedString + converted;
-                        if (returnedString.contains(".GetMapFiles.")) {
-                            break;
+                    boolean endReading = false;
+                    int bytesRead = 0;
+                    while (!endReading) {
+                        bytesRead = in.read(customReturned);
+                        returnedString += new String(customReturned, 0, bytesRead);
+                        if (returnedString.length() == Integer.parseInt(returnedSize)) {
+                            endReading = true;
                         }
                     }
                     returnedString = returnedString.replace(".GetMapFiles.", "");
