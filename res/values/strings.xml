@@ -4,6 +4,7 @@
     <string name="app_name">Arma Connect</string>
 	<string name="downloading_maps_message">Downloading Maps</string>
 	<string name="Finish_message">Finish</string>
+    <string name="clear_maps_folder">Clear Maps</string>
     <string name="menu_MapGPS">Map/GPS</string>
     <string name="menu_DateTime">Watch</string>
     <string name="menu_Weather">Weather</string>

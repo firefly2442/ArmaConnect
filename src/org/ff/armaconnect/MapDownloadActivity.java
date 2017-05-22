@@ -54,7 +54,6 @@ public class MapDownloadActivity extends Activity implements Runnable {
 
     public void run() {
         while (md.finished == false) {
-            //Log.v("MapDownloadActivity", "Setting progress: " + Math.round(md.progress * 100));
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -74,6 +73,7 @@ public class MapDownloadActivity extends Activity implements Runnable {
             @Override
             public void run() {
                 ((ProgressBar) findViewById(R.id.progressMapDLBar)).setProgress(100);
+                ((TextView) findViewById(R.id.progressTextOverlay)).setText("100%");
                 ((Button) findViewById(R.id.downloadFinishButton)).setEnabled(true);
             }
         });

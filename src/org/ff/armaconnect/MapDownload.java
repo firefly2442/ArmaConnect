@@ -37,7 +37,7 @@ public class MapDownload implements Runnable {
         //noinspection InfiniteLoopStatement
         while (true)
         {
-            if (UDP.ipaddress != null)
+            if (UDP.ipaddress != null && finished == false)
             {
                 try {
                     Log.v("MapDownload", "Connecting to TCP IP: " + UDP.ipaddress);
