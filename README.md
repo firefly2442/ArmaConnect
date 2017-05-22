@@ -25,7 +25,7 @@ see the [BIS forum thread](http://forums.bistudio.com/showthread.php?183223).
 
 ### Requirements
 
-* Android phone/tablet version 3.0 or higher (I've only tested with 4.2.2).
+* Android phone/tablet version 3.0 or higher (I've only tested with 4.3.1).
 * Wireless network setup and your phone/tablet connected.
 * [@Arma2NET](https://github.com/ScottNZ/Arma2NET) mod compiled and installed.
 * [Arma2NETConnect plugin](https://github.com/firefly2442/Arma2NETConnectPlugin) for @Arma2NET installed.
@@ -73,16 +73,19 @@ Opening the Android project:
 
 The overview of events for networking between the Arma plugin and Android device is the following:
 
+
 * Plugin sends out UDP message on port 65041. This is similar to a heartbeat message since we don't know what IP address the Android device is running on.
 * Plugin sets up a TCP thread on port 65042 to listen for incoming Android connections and data.
 * Android device receives UDP message on port 65041 and remembers the IP address of the Arma computer.
 * Android device sends TCP connection request on port 65042.
 * At this point, the handshake is complete and all data transfer is done between the two using TCP.
 * If there is a network failure or one system dies, the connection can be re-established via the UDP heartbeat and the above steps.
+* Plugin sets up a TCP thread on port 65043 to listen for map image downloads.
+* Android device sets up TCP via port 65043 to request map image download from the plugin.
 
 
 ### Thanks To
 
 * [AlphaSquad](http://alphasquad.net) for help and testing.
 * Robalo for help with the Arma mod and scripting.
-* Hatchet for help with images.
+* Hatchet for help with map images.
