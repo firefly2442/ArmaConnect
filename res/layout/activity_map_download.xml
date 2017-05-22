@@ -22,26 +22,28 @@
 		android:layout_centerVertical="true"
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentStart="true"/>
-		
+
 	<TextView
 		android:id="@+id/progressTextOverlay"
-		android:background="#00000000"
-		android:layout_alignLeft="@id/progressMapDLBar"
-		android:layout_alignTop="@id/progressMapDLBar"
-		android:layout_alignRight="@id/progressMapDLBar"
-		android:layout_alignBottom="@id/progressMapDLBar"
-		android:gravity="center"
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"/>
+		android:layout_height="wrap_content"
+		android:layout_alignBottom="@id/progressMapDLBar"
+		android:layout_alignLeft="@id/progressMapDLBar"
+		android:layout_alignRight="@id/progressMapDLBar"
+		android:layout_alignTop="@id/progressMapDLBar"
+		android:background="#00000000"
+		android:gravity="center"
+		android:textSize="24sp"/>
 
 	<Button
 		android:id="@+id/downloadFinishButton"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentStart="true"
+		android:layout_below="@+id/progressMapDLBar"
 		android:enabled="false"
 		android:text="@string/Finish_message"
-		android:layout_below="@+id/progressMapDLBar"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentStart="true"/>
+		android:textSize="24sp"/>
 
 </RelativeLayout>
