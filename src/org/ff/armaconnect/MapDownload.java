@@ -80,7 +80,6 @@ public class MapDownload implements Runnable {
                             endReading = true;
                         }
                     }
-                    returnedString = returnedString.replace(".GetMapFiles.", "");
                     //Log.v("MapDownload", "Returned string size: " + returnedString.length());
                     //Log.v("MapDownload", "From plugin (truncated message size): " + returnedString);
 
