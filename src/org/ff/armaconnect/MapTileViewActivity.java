@@ -54,13 +54,16 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		getTileView().setSize(current_map.x, current_map.y);
 
 		// detail levels
-		getTileView().addDetailLevel(1.000f, "tiles/" + current_map.name.toLowerCase() + "/1000/%d_%d.png");
-		getTileView().addDetailLevel(0.500f, "tiles/" + current_map.name.toLowerCase() + "/500/%d_%d.png");
-		getTileView().addDetailLevel(0.250f, "tiles/" + current_map.name.toLowerCase() + "/250/%d_%d.png");
-		getTileView().addDetailLevel(0.125f, "tiles/" + current_map.name.toLowerCase() + "/125/%d_%d.png");
+		getTileView().addDetailLevel(1.000f, getApplicationContext().getFilesDir()+"/maps/" + current_map.name.toLowerCase() + "/1000/%d_%d.png");
+		getTileView().addDetailLevel(0.500f, getApplicationContext().getFilesDir()+"/maps/" + current_map.name.toLowerCase() + "/500/%d_%d.png");
+		getTileView().addDetailLevel(0.250f, getApplicationContext().getFilesDir()+"/maps/" + current_map.name.toLowerCase() + "/250/%d_%d.png");
+		getTileView().addDetailLevel(0.125f, getApplicationContext().getFilesDir()+"/maps/" + current_map.name.toLowerCase() + "/125/%d_%d.png");
 
 		// allow scaling past original size
 		getTileView().setScaleLimits(0, 4);
+
+		// we're running from local internal files, should be fairly fast decodes, go ahead and render asap
+		getTileView().setShouldRenderWhilePanning(true);
 
 		// let's center all markers both horizontally and vertically
 		getTileView().setMarkerAnchorPoints(-0.5f, -0.5f);
