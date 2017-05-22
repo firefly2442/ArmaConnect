@@ -83,14 +83,6 @@ public class MapDownload implements Runnable {
                     //Log.v("MapDownload", "Returned string size: " + returnedString.length());
                     //Log.v("MapDownload", "From plugin (truncated message size): " + returnedString);
 
-                    int maxLogSize = 1000;
-                    for(int i = 0; i <= returnedString.length() / maxLogSize; i++) {
-                        int start = i * maxLogSize;
-                        int end = (i+1) * maxLogSize;
-                        end = end > returnedString.length() ? returnedString.length() : end;
-                        Log.v("MapDownload", returnedString.substring(start, end));
-                    }
-
                     //Create folders if necessary or download the file
                     //default location for me: /data/data/org.ff.armaconnect/files
                     File f = new File(c.getFilesDir(), "maps");
@@ -101,7 +93,7 @@ public class MapDownload implements Runnable {
 
                     String[] files = returnedString.split("\n");
                     for (int i = 0; i < files.length; i++) {
-                        Log.v("MapDownload", "Raw file value: " + files[i]);
+                        //Log.v("MapDownload", "Raw file value: " + files[i]);
                         progress = (float)i / files.length;
                         //Log.v("MapDownload", "Raw progress value: " + i + " " + files.length);
                         files[i] = files[i].replace("\\", "/"); //replaces all occurences
@@ -128,7 +120,7 @@ public class MapDownload implements Runnable {
                                     break;
                             }
                             out_stream.close();
-                            Log.v("MapDownload", "Finished writing file: " + file_loc.getPath());
+                            //Log.v("MapDownload", "Finished writing file: " + file_loc.getPath());
                         } else {
                             //create folder
                             f = new File(c.getFilesDir(), "/maps"+files[i]);
