@@ -30,7 +30,7 @@ public class ParseData {
 		while (i < split.length) {
 			switch (split[i]) {
 				case "player":
-					if (!MapTileViewActivity.maps.setPlayerPosition(split[i + 1], Float.parseFloat(split[i + 2]), Float.parseFloat(split[i + 3]), Float.parseFloat(split[i + 4]), Boolean.parseBoolean(split[i + 5])))
+					if (!MainActivity.maps.setPlayerPosition(split[i + 1], Float.parseFloat(split[i + 2]), Float.parseFloat(split[i + 3]), Float.parseFloat(split[i + 4]), Boolean.parseBoolean(split[i + 5])))
 						Log.v("ParseData", "Unable to set the player position.");
 					i = i + 6;
 					break;

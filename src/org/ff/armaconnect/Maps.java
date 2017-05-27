@@ -13,6 +13,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 package org.ff.armaconnect;
 
+import android.content.Context;
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Maps {
@@ -21,18 +28,41 @@ public class Maps {
 	private int current_map = -1;
 	private long last_update;
 	
-	public Maps()
-	{
+	public Maps() {
+		//constructor
+	}
+
+	private void addMap(String mapname, int x, int y, float dimension) {
 		//https://community.bistudio.com/wiki/BIS_fnc_mapSize
 		//Use this to get the map size via SQF, for example:
 		//"Altis" call BIS_fnc_mapSize
 
-		//constructor
-		//map name, x,y dimension, and scaling
-		available_maps.add(new Map("Stratis", 8192, 8192, 1.0f));
-		available_maps.add(new Map("Altis", 11520, 11520, 0.375f)); //30720 x 30720 original size
-		available_maps.add(new Map("Tanoa", 15360, 15360, 1.0f)); //15360 x 15360 original size
+		//Stratis, 8192, 8192, 1.0     -    8192 x 8192 original size
+		//Altis, 11520, 11520, 0.375   -    30720 x 30720 original size
+		//Tanoa, 15360, 15360, 1.0    -     15360 x 15360 original size
+
+		//map name, x and y size, and dimension scaling
+		available_maps.add(new Map(mapname, x, y, dimension));
 		current_map = 0;
+	}
+
+	public void loadMapsFromFile(Context c) {
+		//read internal storage and load maps/maps.txt
+		//this stores the names and dimensions of the maps
+		String line;
+		try {
+			InputStream fis = new FileInputStream(c.getFilesDir()+"/maps/maps.txt");
+			InputStreamReader isr = new InputStreamReader(fis);
+			BufferedReader br = new BufferedReader(isr);
+
+			while ((line = br.readLine()) != null) {
+				String split[] = line.split(",");
+				addMap(split[0].trim(), Integer.parseInt(split[1].trim()), Integer.parseInt(split[2].trim()), Float.parseFloat(split[3].trim()));
+				Log.v("Maps", "Loading map: " + split[0].trim()+" "+Integer.parseInt(split[1].trim())+" "+Integer.parseInt(split[2].trim())+" "+Float.parseFloat(split[3].trim()));
+			}
+		} catch (Exception e) {
+			Log.e("Maps", "Error loading maps/maps.txt: " + e);
+		}
 	}
 	
 	public Map getCurrentMap() {

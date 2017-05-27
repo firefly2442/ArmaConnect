@@ -30,7 +30,6 @@ import android.widget.Toast;
 
 public class MapTileViewActivity extends TileViewActivity implements Runnable {
 
-	public static Maps maps = new Maps();
 	// player marker
 	private ImageView player;
 	private boolean mutex;
@@ -46,7 +45,7 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-		Map current_map = maps.getCurrentMap();
+		Map current_map = MainActivity.maps.getCurrentMap();
 
 		Log.v("MapTileViewActivity", "MapTileView onCreate.");
 
@@ -188,15 +187,15 @@ public class MapTileViewActivity extends TileViewActivity implements Runnable {
 		while (mutex) {
 			if (player != null) {
 				//update player position
-				if (maps.getCurrentMap() != null)
-					updatePlayerMarker(maps.getCurrentMap());
+				if (MainActivity.maps.getCurrentMap() != null)
+					updatePlayerMarker(MainActivity.maps.getCurrentMap());
 			}
 			
 			//TODO: check if the map changed or we got disconnected (more than 8 seconds without data)
 			//if so, go back to "connecting" activity
-			if (UDP.ipaddress == null || (System.currentTimeMillis()/1000 - maps.getLastUpdateEpoch()) >= 8) {
+			if (UDP.ipaddress == null || (System.currentTimeMillis()/1000 - MainActivity.maps.getLastUpdateEpoch()) >= 8) {
 				Log.v("MapTileViewActivity", "Disconnected, running reset.");
-				maps.resetMap();
+				MainActivity.maps.resetMap();
 				Intent intent = new Intent( MapTileViewActivity.this, ConnectingActivity.class );
 				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				intent.putExtra("launching", "show_map");

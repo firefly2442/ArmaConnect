@@ -116,7 +116,7 @@ public class ConnectingActivity extends Activity implements Runnable {
 		//Log.v("ConnectingActivity", "Waiting for map information.");
 		while (mutex) {
 			//check to make sure we've gotten some data first
-			if (MapTileViewActivity.maps.getCurrentMap() != null) {
+			if (MainActivity.maps.getCurrentMap() != null) {
 				//the map has changed or we need to load in for the first time
 				Intent intent = new Intent( ConnectingActivity.this, MapTileViewActivity.class );
 				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

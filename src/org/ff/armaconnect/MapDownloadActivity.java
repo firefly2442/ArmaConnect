@@ -34,6 +34,9 @@ public class MapDownloadActivity extends Activity implements Runnable {
         final Button finishButton = (Button) findViewById(R.id.downloadFinishButton);
         finishButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //load up our new maps settings/dimensions from maps/maps.txt
+                MainActivity.maps.loadMapsFromFile(getApplicationContext());
+
                 Intent intent = new Intent( MapDownloadActivity.this, MainActivity.class );
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity( intent );

@@ -97,7 +97,7 @@ public class MapDownload implements Runnable {
                         progress = (float)i / files.length;
                         //Log.v("MapDownload", "Raw progress value: " + i + " " + files.length);
                         files[i] = files[i].replace("\\", "/"); //replaces all occurences
-                        if (files[i].endsWith(".png")) {
+                        if (files[i].endsWith(".png") || files[i].endsWith(".txt")) {
                             //get file
                             String[] size_location = files[i].split("\t");
                             int toWriteSize = Integer.parseInt(size_location[0]);

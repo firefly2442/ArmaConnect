@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 	
 	private static UDP udp;
 	public static TCP tcp;
-
+	public static Maps maps = new Maps();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +78,11 @@ public class MainActivity extends Activity {
 		    	startActivity( intent );
 		    }
 		});
+
+		File maps_txt = new File(getApplicationContext().getFilesDir(), "maps/maps.txt");
+		if (maps_txt.exists()) {
+			maps.loadMapsFromFile(getApplicationContext()); //load maps information from maps/maps.txt
+		}
 	}
 
 
