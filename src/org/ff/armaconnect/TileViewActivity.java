@@ -36,6 +36,9 @@ public class TileViewActivity extends Activity {
 		tileView.setId( R.id.tileview_id );
 		tileView.setSaveEnabled( true );
 
+		// use our own custom bitmap provider to access Android internal storage
+		tileView.setBitmapProvider( new BitmapProviderInternalStorage() );
+
 		setContentView( tileView );
 	}
 	
