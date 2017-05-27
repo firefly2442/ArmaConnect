@@ -1,1 +1,0 @@
-Main map images go here (see script for generation).

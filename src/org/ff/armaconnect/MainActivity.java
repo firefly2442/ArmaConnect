@@ -13,6 +13,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 package org.ff.armaconnect;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -32,18 +33,28 @@ public class MainActivity extends Activity {
 	private static UDP udp;
 	public static TCP tcp;
 
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		SettingsActivity.initializeSettings(getApplicationContext());
+		MapDownload.initializeMapDownload(getApplicationContext());
 
 		//start networking
 		if (udp == null)
 			udp = new UDP();
 		if (tcp == null)
 			tcp = new TCP();
+
+		File f = new File(getApplicationContext().getFilesDir(), "maps");
+		if (!f.exists()) {
+			//start downloading maps if this is the first run
+			Intent intent = new Intent( MainActivity.this, MapDownloadActivity.class );
+			intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			startActivity( intent );
+		}
 		
 		if (SettingsActivity.keepScreenOn())
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

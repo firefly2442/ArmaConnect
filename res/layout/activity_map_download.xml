@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/downloadingMapsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:padding="20dp"
+        android:textSize="22sp"
+        android:text="@string/downloading_maps_message"
+		/>
+
+	<ProgressBar
+		android:id="@+id/progressMapDLBar"
+		style="@android:style/Widget.ProgressBar.Horizontal"
+		android:layout_width="match_parent"
+		android:max="100"
+		android:layout_height="50dp"
+		android:layout_centerVertical="true"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentStart="true"/>
+
+	<TextView
+		android:id="@+id/progressTextOverlay"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignBottom="@id/progressMapDLBar"
+		android:layout_alignLeft="@id/progressMapDLBar"
+		android:layout_alignRight="@id/progressMapDLBar"
+		android:layout_alignTop="@id/progressMapDLBar"
+		android:background="#00000000"
+		android:gravity="center"
+		android:textSize="24sp"/>
+
+	<Button
+		android:id="@+id/downloadFinishButton"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentStart="true"
+		android:layout_below="@+id/progressMapDLBar"
+		android:enabled="false"
+		android:text="@string/Finish_message"
+		android:textSize="24sp"/>
+
+</RelativeLayout>

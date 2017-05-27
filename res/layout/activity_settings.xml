@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayoutSettings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -17,12 +18,20 @@
         android:id="@+id/screenOnCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_keepscreenon" />
+        android:text="@string/settings_keepscreenon"
+        />
 
     <CheckBox
         android:id="@+id/metricUnitsCheckBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings_metricunits" />
+
+    <Button
+        android:id="@+id/clearMapsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_maps_folder" />
+
 
 </LinearLayout>

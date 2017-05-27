@@ -17,14 +17,23 @@ import org.ff.armaconnect.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
 
 public class SettingsActivity extends Activity {
 	
@@ -43,9 +52,9 @@ public class SettingsActivity extends Activity {
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		//setup UI
-		CheckBox screenCheckBox = (CheckBox)findViewById(R.id.screenOnCheckBox);
+		final CheckBox screenCheckBox = (CheckBox)findViewById(R.id.screenOnCheckBox);
         screenCheckBox.setChecked(keepScreenOn());
-		CheckBox metricCheckBox = (CheckBox)findViewById(R.id.metricUnitsCheckBox);
+		final CheckBox metricCheckBox = (CheckBox)findViewById(R.id.metricUnitsCheckBox);
 		metricCheckBox.setChecked(metricUnits());
 
         screenCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -67,7 +76,40 @@ public class SettingsActivity extends Activity {
 					showSaveMessage();
 					updateSettings();
 				}
-      	});
+ 		     	});
+		final Button clearMapsButton = (Button) findViewById(R.id.clearMapsButton);
+		File f = new File(getApplicationContext().getFilesDir(), "maps");
+		if (!f.exists()) {
+			clearMapsButton.setEnabled(false);
+		}
+		clearMapsButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+			File f = new File(getApplicationContext().getFilesDir(), "maps");
+			deleteRecursive(f);
+			Log.v("Settings", "Deleted maps folder.");
+			clearMapsButton.setEnabled(false);
+
+			final TextView restartMessage = new TextView(SettingsActivity.this);
+			restartMessage.setText(R.string.restart_message);
+			restartMessage.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+			restartMessage.setLayoutParams(new WindowManager.LayoutParams(WindowManager.LayoutParams.MATCH_PARENT,
+																			WindowManager.LayoutParams.WRAP_CONTENT));
+			final LinearLayout linearLayout = (LinearLayout)findViewById(R.id.linearLayoutSettings);
+			linearLayout.addView(restartMessage);
+			}
+		});
+	}
+
+	private void deleteRecursive(File fileOrDirectory) {
+		try {
+			if (fileOrDirectory.isDirectory())
+				for (File child : fileOrDirectory.listFiles())
+					deleteRecursive(child);
+
+			fileOrDirectory.delete();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void initializeSettings(Context context) {
