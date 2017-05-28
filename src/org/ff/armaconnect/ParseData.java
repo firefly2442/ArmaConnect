@@ -35,12 +35,11 @@ public class ParseData {
 					i = i + 6;
 					break;
 				case "datetime":
-					//returned milliseconds is not used
 					//Java calendars start with 0 for January, thus the subtraction
 					Calendar gc = Calendar.getInstance();
 					gc.set(Integer.parseInt(split[i + 1]), Integer.parseInt(split[i + 2]) - 1, Integer.parseInt(split[i + 3]), Integer.parseInt(split[i + 4]), Integer.parseInt(split[i + 5]), Integer.parseInt(split[i + 6]));
 					DateTimeActivity.updateDateTime(gc);
-					i = i + 8;
+					i = i + 7;
 					break;
 				case "weather":
 					Weather w = new Weather(Float.parseFloat(split[i + 1]), Float.parseFloat(split[i + 3]), Float.parseFloat(split[i + 5]), Float.parseFloat(split[i + 7]), Float.parseFloat(split[i + 9]), Float.parseFloat(split[i + 11]), Float.parseFloat(split[i + 13]), Float.parseFloat(split[i + 15]), Float.parseFloat(split[i + 17]), Float.parseFloat(split[i + 19]));
