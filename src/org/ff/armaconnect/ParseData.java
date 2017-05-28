@@ -13,6 +13,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 package org.ff.armaconnect;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 import android.util.Log;
@@ -46,6 +47,11 @@ public class ParseData {
 					Weather f = new Weather(Float.parseFloat(split[i + 2]), Float.parseFloat(split[i + 4]), Float.parseFloat(split[i + 6]), Float.parseFloat(split[i + 8]), Float.parseFloat(split[i + 10]), Float.parseFloat(split[i + 12]), Float.parseFloat(split[i + 14]), Float.parseFloat(split[i + 16]), Float.parseFloat(split[i + 18]), Float.parseFloat(split[i + 20]));
 					WeatherActivity.updateWeather(w, f);
 					i = i + 21;
+					break;
+				case "altimeter":
+					Altimeter a = new Altimeter(Float.parseFloat(split[i + 1]), Float.parseFloat(split[i + 2]));
+					AltimeterActivity.updateAltimeter(a);
+					i = i + 3;
 					break;
 				default:
 					i++;

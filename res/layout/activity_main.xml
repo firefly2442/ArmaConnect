@@ -67,6 +67,21 @@
             android:layout_height="1dp"
             android:background="#FFCCCCCC"
             />
+
+        <TextView
+            android:id="@+id/show_altimeter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="@string/menu_Altimeter"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFCCCCCC"
+            />
         
         <TextView
             android:id="@+id/show_settings"

@@ -2,13 +2,14 @@
 <resources>
 
     <string name="app_name">Arma Connect</string>
-	<string name="downloading_maps_message">Downloading Maps</string>
-	<string name="Finish_message">Finish</string>
+    <string name="downloading_maps_message">Downloading Maps</string>
+    <string name="Finish_message">Finish</string>
     <string name="clear_maps_folder">Clear Maps</string>
     <string name="restart_message">Please restart the app.</string>
     <string name="menu_MapGPS">Map/GPS</string>
     <string name="menu_DateTime">Watch</string>
     <string name="menu_Weather">Weather</string>
+    <string name="menu_Altimeter">Altimeter</string>
     <string name="menu_Settings">Settings</string>
     <string name="settings_keepscreenon">Keep Screen On (No Sleeping)</string>
     <string name="settings_metricunits">Use Metric Units (Over Imperial)</string>
@@ -35,10 +36,15 @@
     <string name="weather_Waves_0_3">Mostly calm seas</string>
     <string name="weather_Waves_0_7">Moderately choppy seas</string>
     <string name="weather_Waves_1_0">Extreme swells</string>
+    <string name="altimeter_sea_level">-- Sea Level --</string>
+    <string name="altimeter_terrain_height">Terrain Height</string>
+    <string name="altimeter_seabed_depth">Seabed Depth</string>
+    <string name="altimeter_height_ASL">Height ASL</string>
+    <string name="altimeter_height_BSL">Height BSL</string>
 
     <string-array name="tips">
         <item>Tip: Tap your player icon on the map to automatically follow.</item>
         <item>Tip: The options screen allows you to set metric vs. imperial units of measurement.</item>
     </string-array>
-    <string name="title_activity_map_download">MapDownloadActivity</string>
+
 </resources>

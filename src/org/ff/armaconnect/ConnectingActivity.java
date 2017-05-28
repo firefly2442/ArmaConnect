@@ -89,6 +89,9 @@ public class ConnectingActivity extends Activity implements Runnable {
 			case "show_weather":
 				waitForWeather();
 				break;
+			case "show_altimeter":
+				waitForAltimeter();
+				break;
 		}
 	}
 	
@@ -143,6 +146,25 @@ public class ConnectingActivity extends Activity implements Runnable {
 		    	finish(); //this will "destroy" this activity
 			}
 			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void waitForAltimeter() {
+		//Log.v("ConnectingActivity", "Waiting for altimeter information.");
+		while (mutex) {
+			//check to make sure we've gotten some data first
+			if (AltimeterActivity.isAltimeterSet()) {
+				Intent intent = new Intent( ConnectingActivity.this, AltimeterActivity.class );
+				intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				startActivity( intent );
+				finish(); //this will "destroy" this activity
+			}
+
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {

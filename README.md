@@ -16,12 +16,13 @@ see the [BIS forum thread](http://forums.bistudio.com/showthread.php?183223).
 * Live map with player location through GPS
 * Date and time display from the game
 * Weather (clouds, rain, fog, etc.) (forecast needs more commands from BIS)
+* Altitude
 
 ##### Planned/Possible Future Features
-* Altitude
 * Chat log
 * Gear/inventory
 * Task listing
+* Bi-directional map marker creation/updating
 
 ### Requirements
 

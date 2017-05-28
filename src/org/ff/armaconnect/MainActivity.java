@@ -63,6 +63,7 @@ public class MainActivity extends Activity {
 		implementations.put( R.id.show_map, MapTileViewActivity.class );
 		implementations.put( R.id.show_datetime, DateTimeActivity.class );
 		implementations.put( R.id.show_weather, WeatherActivity.class );
+		implementations.put( R.id.show_altimeter, AltimeterActivity.class );
 		
 		for (Entry<Integer, Class<?>> entry : implementations.entrySet()) {
 			TextView label = (TextView) findViewById( entry.getKey() );

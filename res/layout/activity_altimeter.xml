@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textSeaLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:padding="20dp"
+        android:text="@string/altimeter_sea_level"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+    <TextView
+        android:id="@+id/textTerrainHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="@string/altimeter_terrain_height"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginBottom="85dp"
+        android:layout_above="@+id/textSeaLevel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textSeabedDepth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="@string/altimeter_seabed_depth"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/textSeaLevel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="43dp" />
+
+    <TextView
+        android:id="@+id/textHeightAboveASL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="@string/altimeter_height_ASL"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignBottom="@+id/textTerrainHeight"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="42dp" />
+
+    <TextView
+        android:id="@+id/textHeightBelowASL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="@string/altimeter_height_BSL"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_below="@+id/textSeaLevel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="87dp" />
+
+</RelativeLayout>
