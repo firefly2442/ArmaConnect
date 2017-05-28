@@ -39,7 +39,7 @@ public class Maps {
 
 		//Stratis, 8192, 8192, 1.0     -    8192 x 8192 original size
 		//Altis, 11520, 11520, 0.375   -    30720 x 30720 original size
-		//Tanoa, 15360, 15360, 1.0    -     15360 x 15360 original size
+		//Tanoa, 1928, 1928, 0.125520833    -     15360 x 15360 original size
 
 		//map name, x and y size, and dimension scaling
 		available_maps.add(new Map(mapname, x, y, dimension));
