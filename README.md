@@ -48,9 +48,12 @@ see the [BIS forum thread](http://forums.bistudio.com/showthread.php?183223).
 
 ### Troubleshooting
 
-* Make sure your firewall isn't blocking the connection.  Allow UDP port 65041 and TCP port 65042. Most programs should prompt you at the beginning when it tries to make a connection. All network connections should be on the same subnet and will not leave your local network.
+* Make sure your firewall isn't blocking the connection.  Allow UDP port 65041 and TCP ports 65042-65043. Your operating system will probably prompt you at the beginning when it
+tries to make a connection. All network connections should be on the same subnet and will not leave your local network.
 * Check the Arma2NET logs.  These can be found in `Users/username/AppData/Local/Arma2NET/`.
 * Check the ArmaConnect logs.  These can be found in `Users/userame/AppData/Local/Arma2NETConnect/logs/`.
+* If you have problems downloading the maps or loading up the GPS try clearing
+the maps by clicking `Clear Maps` on the `Settings` page in the Android app.
 * If you found a bug, please create a ticket on the appropriate Github project page.
 
 ### License
@@ -64,6 +67,36 @@ Android is a trademark of Google Inc.  Google Play is a trademark of Google Inc.
 The Android application uses two third-party libraries.  [TileView](https://github.com/moagrius/TileView) is released under the MIT license.  It in turn uses [DiskLruCache](https://github.com/JakeWharton/DiskLruCache) which is released under the Apache version 2 license.
 
 Some images are part of the [Tango Icon Library](http://tango.freedesktop.org/Tango_Icon_Library) which is released under Public Domain.
+
+### Maps
+
+Maps are downloaded by the Android application upon startup.  The files are provided
+by running Arma 3 with the @Arm2NET mod and plugin enabled.  The folder structure should
+look like this:
+
+```
+Arma 3\@Arma2NET\Addins\Arma2NETConnect\maps\maps.txt
+Arma 3\@Arma2NET\Addins\Arma2NETConnect\maps\altis\
+Arma 3\@Arma2NET\Addins\Arma2NETConnect\maps\altis\125\
+Arma 3\@Arma2NET\Addins\Arma2NETConnect\maps\altis\250\
+...
+```
+
+Each map has it's own folder with corresponding tiled map images.  These are created
+using the `convert_maps.sh` script.  Make sure the map folder name is lowercase.
+In addition, make sure you have the `maps.txt` file setup.
+This file contains the maps and corresponding dimensions and scaling.  For example:
+
+```
+Stratis, 8192, 8192, 1.0
+Altis, 11520, 11520, 0.375
+Tanoa, 1928, 1928, 0.125520833
+```
+
+If you make changes or add additional maps (for example 3rd party maps), you wil need
+to clear the map cache on Android.  This can be done by navigating to the `Settings`
+page in the Android app and clicking `Clear Maps`.  This will then re-download
+all the image files.
 
 ### For Developers
 
